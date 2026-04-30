@@ -153,10 +153,10 @@ export default function ContactPage() {
                     </p>
 
                     <a
-                      href="tel:+919798193688"
+                      href="tel:+919288193688"
                       className="text-xl sm:text-2xl lg:text-3xl font-['League_Spartan'] font-black uppercase tracking-tighter hover:text-red-600 transition-colors"
                     >
-                      +91&nbsp;9798193688
+                      +91&nbsp;9288193688
                     </a>
                   </div>
                 </div>

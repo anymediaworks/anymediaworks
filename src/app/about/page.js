@@ -250,7 +250,7 @@ export default function AboutPage() {
               <img className="w-full h-full object-cover grayscale brightness-110 group-hover:grayscale-0 transition-all duration-300" alt="Yashoda Kumari" src="/images/team4.PNG" />
             </div>
             <div className="mt-4 md:mt-6 text-center sm:text-left">
-              <p className="font-editorial-heading text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tighter">VIJAT ATISH</p>
+              <p className="font-editorial-heading text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tighter">VIJAY ATISH</p>
               <p className="font-body font-semibold text-primary uppercase tracking-widest text-[10px] sm:text-xs md:text-sm">Service Representative</p>
             </div>
           </div>
