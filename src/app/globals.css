@@ -1,26 +1,50 @@
+@import url('https://fonts.cdnfonts.com/css/brittany-signature');
+
+/* 2. Then import Tailwind */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* 3. Then your custom theme variables */
+@theme {
+  --color-primary: #FF2D2D;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #000000;
+  --color-surface-container-highest: #E2E2E2;
+  --color-surface-container: #eeeeee;
+
+  --font-headline: var(--font-league-spartan), sans-serif;
+  --font-body: var(--font-poppins), sans-serif;
+  --font-label: var(--font-space-grotesk), sans-serif;
+  --font-script: "Brittany Signature", cursive;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    overflow-x: hidden;
 }
+
+/* ... keep the rest of your custom classes the same ... */
+.font-editorial-heading {
+    font-family: var(--font-headline);
+    text-transform: uppercase;
+}
+
+.font-script {
+    font-family: var(--font-script);
+    text-transform: none;
+}
+
+.impact-masthead-image {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
