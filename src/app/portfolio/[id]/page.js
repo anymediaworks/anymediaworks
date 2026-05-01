@@ -3,6 +3,11 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { projects, getProjectById } from '@/data/projects';
 
+// HELPER: Check if the source is a video file
+const isVideo = (src) => {
+  return src && src.match(/\.(mp4|webm|ogg)$/i);
+};
+
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const project = getProjectById(id);
@@ -17,6 +22,7 @@ export async function generateStaticParams() {
   return projects.map((project) => ({ id: project.id }));
 }
 
+// Fully Server-Side Component (Fast & SEO optimized)
 export default async function ProjectDetailsPage({ params }) {
   const { id } = await params;
   const project = getProjectById(id);
@@ -28,10 +34,14 @@ export default async function ProjectDetailsPage({ params }) {
   const nextIndex = (currentIndex + 1) % projects.length;
   const nextProject = projects[nextIndex];
 
+  // Determine if current and next media are videos
+  const isProjectVideo = isVideo(project.heroImage || project.image);
+  const isNextProjectVideo = isVideo(nextProject.heroImage || nextProject.image);
+
   return (
     <div className="min-h-screen bg-white selection:bg-primary selection:text-white pb-20 md:pb-32">
       
-      {/* ─── NAVIGATION AREA (Fixed visibility issue) ─── */}
+      {/* ─── NAVIGATION AREA ─── */}
       <nav className="relative z-40 w-full px-6 sm:px-8 md:px-16 py-6 md:py-10 border-b border-zinc-100 flex items-center bg-white">
         <div className="max-w-screen-2xl mx-auto w-full">
           <Link 
@@ -102,20 +112,86 @@ export default async function ProjectDetailsPage({ params }) {
         </div>
       </header>
 
-      {/* ─── MAIN VISUAL (Fixed mobile height issue) ─── */}
+      {/* ─── MAIN VISUAL (With Clean URL Modal Hack) ─── */}
       <section className="px-4 sm:px-8 md:px-16 mb-16 md:mb-32 group/hero">
-        <div className="max-w-screen-2xl mx-auto relative w-full min-h-[60vh] sm:min-h-[70vh] md:min-h-0 md:aspect-[21/9] overflow-hidden bg-zinc-100 border-8 md:border-[12px] border-black shadow-2xl rounded-sm">
-          <Image
-            src={project.heroImage || project.image || "https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=2000"} 
-            alt={project.title}
-            fill
-            priority
-            className="object-cover transition-transform duration-[2000ms] group-hover/hero:scale-105 md:group-hover/hero:scale-110"
-            sizes="(max-width: 768px) 100vw, 90vw"
-          />
-          {/* Subtle Branded Overlay */}
-          <div className="absolute inset-0 bg-primary/10 mix-blend-overlay pointer-events-none"></div>
+        
+        {/* HIDDEN CHECKBOX: This controls the modal without altering the URL */}
+        <input type="checkbox" id="image-modal-toggle" className="hidden peer" />
+
+        {/* IMAGE/VIDEO CONTAINER */}
+        <div className="max-w-screen-2xl mx-auto relative w-full h-[60vh] sm:h-[70vh] md:h-[85vh] overflow-hidden bg-zinc-900 border-8 md:border-[12px] border-black shadow-2xl rounded-sm z-10">
+          
+          <label 
+            htmlFor="image-modal-toggle" 
+            className="block w-full h-full cursor-zoom-in relative"
+          >
+            {/* 1. Blurred Background Layer */}
+            {isProjectVideo ? (
+              <video
+                src={project.heroImage || project.image} 
+                autoPlay loop muted playsInline
+                className="absolute inset-0 -z-10 w-full h-full object-cover opacity-30 blur-3xl scale-125 pointer-events-none"
+              />
+            ) : (
+              <Image
+                src={project.heroImage || project.image} 
+                alt={`${project.title} background`}
+                fill
+                className="object-cover -z-10 opacity-30 blur-3xl scale-125 pointer-events-none"
+              />
+            )}
+
+            {/* 2. Main Uncropped Media */}
+            {isProjectVideo ? (
+              <video
+                src={project.heroImage || project.image} 
+                autoPlay loop muted playsInline
+                className="absolute inset-0 w-full h-full object-contain object-center transition-transform duration-[2000ms] group-hover/hero:scale-105"
+              />
+            ) : (
+              <Image
+                src={project.heroImage || project.image} 
+                alt={project.title}
+                fill
+                priority
+                className="object-contain object-center transition-transform duration-[2000ms] group-hover/hero:scale-105"
+                sizes="(max-width: 768px) 100vw, 90vw"
+              />
+            )}
+          </label>
         </div>
+
+        {/* ─── CSS-ONLY FULLSCREEN MEDIA MODAL ─── */}
+        <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/95 backdrop-blur-xl opacity-0 invisible pointer-events-none peer-checked:opacity-100 peer-checked:visible peer-checked:pointer-events-auto transition-all duration-500">
+          
+          {/* Click background to close */}
+          <label htmlFor="image-modal-toggle" className="absolute inset-0 cursor-zoom-out"></label>
+          
+          {/* Close Button */}
+          <label htmlFor="image-modal-toggle" className="absolute top-6 right-6 md:top-10 md:right-10 text-white bg-white/10 hover:bg-primary p-3 rounded-full backdrop-blur-md transition-all duration-300 z-10 flex items-center justify-center cursor-pointer hover:scale-110">
+            <span className="material-symbols-outlined text-2xl md:text-3xl leading-none block">close</span>
+          </label>
+
+          {/* The Full Size Media */}
+          <div className="relative w-[95vw] h-[85vh] md:w-[90vw] md:h-[90vh] pointer-events-none drop-shadow-2xl">
+            {isProjectVideo ? (
+              <video
+                src={project.heroImage || project.image} 
+                autoPlay loop muted playsInline controls
+                className="absolute inset-0 w-full h-full object-contain pointer-events-auto"
+              />
+            ) : (
+              <Image
+                src={project.heroImage || project.image} 
+                alt={project.title}
+                fill
+                className="object-contain pointer-events-auto"
+                sizes="100vw"
+              />
+            )}
+          </div>
+        </div>
+
       </section>
 
       {/* ─── CONTENT GRID ─── */}
@@ -160,15 +236,22 @@ export default async function ProjectDetailsPage({ params }) {
         <Link href={`/portfolio/${nextProject.id}`} className="block">
           <div className="bg-black p-8 sm:p-12 md:p-24 rounded-2xl md:rounded-3xl overflow-hidden relative group/next cursor-pointer border-4 border-transparent hover:border-primary transition-all duration-500">
             
-            {/* Background Image of the next project (Ghosted/Faded) */}
-            {/* UPDATED: grayscale-0 on mobile/tablet, grayscale on lg (desktop) */}
+            {/* Background Media of the next project */}
             <div className="absolute inset-0 z-0 opacity-20 grayscale-0 lg:grayscale transition-all duration-700 group-hover/next:scale-110 lg:group-hover/next:grayscale-0 group-hover/next:opacity-40">
-                <Image 
-                    src={nextProject.heroImage || nextProject.image || "https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=2000"} 
+                {isNextProjectVideo ? (
+                  <video 
+                    src={nextProject.heroImage || nextProject.image} 
+                    autoPlay loop muted playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image 
+                    src={nextProject.heroImage || nextProject.image} 
                     alt={`Next Project: ${nextProject.title}`} 
                     fill 
                     className="object-cover"
-                />
+                  />
+                )}
             </div>
 
             <div className="relative z-10 flex flex-col items-center text-center">
@@ -180,7 +263,6 @@ export default async function ProjectDetailsPage({ params }) {
                 {nextProject.title}<span className="text-primary">.</span>
               </h2>
 
-              {/* Animated Arrow Icon */}
               <div className="mt-8 md:mt-12 w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/20 flex items-center justify-center transition-all duration-500 group-hover/next:bg-primary group-hover/next:border-primary">
                 <span className="material-symbols-outlined text-white text-3xl md:text-4xl transform transition-transform duration-500 group-hover/next:translate-x-2">
                   east
@@ -188,7 +270,6 @@ export default async function ProjectDetailsPage({ params }) {
               </div>
             </div>
             
-            {/* Texture/Noise overlay */}
             <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
           </div>
         </Link>

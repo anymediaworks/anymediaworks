@@ -5,7 +5,7 @@ export const projects = [
     id: '01',
     slug: 'iphone-17-pro',
     title: 'iPhone 17 Pro', // Shortened slightly for grid aesthetics
-    category: 'CINEMATIC', // Kept uppercase to match your filter buttons
+    category: 'BRANDING', // Kept uppercase to match your filter buttons
     year: '2025',
     client: 'Apple Concept',
     role: 'Creative Direction & Visual Design',
@@ -27,7 +27,7 @@ export const projects = [
    id: '03',
     slug: 'olivia-estate',
     title: 'OLIVIA ESTATE',
-    category: 'WEB DESIGN',
+    category: 'DIGITAL',
     year: '2025',
     client: 'Olivia Estate',
     role: 'UI/UX Design, Frontend',
@@ -38,7 +38,7 @@ export const projects = [
    id: '04',
     slug: 'evergreen-co',
     title: 'EVERGREEN & CO.',
-    category: 'WEB DESIGN',
+    category: 'DIGITAL',
     year: '2024',
     client: 'Evergreen & Co.',
     role: 'UI/UX Design, Frontend',
@@ -58,15 +58,80 @@ export const projects = [
   },
   {
     id: '06',
-    slug: 'evergreen-social-campaign',
-    title: 'EVERGREEN CO.',
+    slug: 'wedding-shots',
+    title: 'WEDDING SHOTS',
     category: 'LIVE EVENTS',
-    year: '2024',
-    client: 'EverGreen Co.',
-    role: 'Art Direction, Campaign Strategy',
-    heroImage: '/images/campaign1.jpeg',
-    description: 'A multi-part social media campaign promoting sustainable living, community engagement, and eco-friendly daily swaps to inspire impactful environmental change.',
+    year: '2026',
+    client: 'Private Clients',
+    role: 'Event Coverage & Photography',
+    heroImage: '/images/event_weddingshots.PNG', // Using the first image for the main grid cover
+    gallery: ["/images/event_weddingshots.PNG"], // Stored the rest in a gallery array for the detail page
+    description: 'Comprehensive live event coverage spanning weddings, birthdays, and baby showers. We focus on capturing authentic emotions and candid moments with a high-end cinematic and editorial touch.',
   },
+   {
+    id: '07',
+    slug: 'birthday-photography',
+    title: 'BIRTHDAY PHOTOGRAPHY',
+    category: 'LIVE EVENTS',
+    year: '2026',
+    client: 'Private Clients',
+    role: 'Event Coverage & Photography',
+    heroImage: '/images/event_birthdayparty.PNG', // Using the first image for the main grid cover
+    gallery: ["/images/event_birthdayparty.PNG" ], // Stored the rest in a gallery array for the detail page
+    description: 'Comprehensive live event coverage spanning weddings, birthdays, and baby showers. We focus on capturing authentic emotions and candid moments with a high-end cinematic and editorial touch.',
+  },
+   {
+    id: '08',
+    slug: 'baby-shower-photoshoot',
+    title: 'BABY SHOWER PHOTOSHOOT',
+    category: 'LIVE EVENTS',
+    year: '2026',
+    client: 'Private Clients',
+    role: 'Event Coverage & Photography',
+    heroImage: '/images/event_babeshower.PNG', // Using the first image for the main grid cover
+    gallery: ["/images/event_babeshower.PNG"], // Stored the rest in a gallery array for the detail page
+    description: 'Comprehensive live event coverage spanning weddings, birthdays, and baby showers. We focus on capturing authentic emotions and candid moments with a high-end cinematic and editorial touch.',
+  },
+
+   {
+    id: '09',
+    slug: 'vertical-reels-collection',
+    title: 'SHORT-FORM REELS',
+    category: 'CINEMATIC',
+    year: '2026',
+    client: 'Various Brands',
+    role: 'Video Editing & Motion Graphics',
+    heroImage: '/videos/reel1.mp4', // Using the first video as the hero cover
+    gallery: ["/videos/reel1.mp4"], // Stores all videos so you can loop/display them on the detail page
+    description: 'A high-impact collection of short-form vertical reels engineered for maximum audience retention and social media engagement. Built for speed, attention, and visual dominance.',
+  },
+
+  {
+    id: '10',
+    slug: 'vertical-reels-collection',
+    title: 'SHORT-FORM REELS',
+    category: 'CINEMATIC',
+    year: '2026',
+    client: 'Various Brands',
+    role: 'Video Editing & Motion Graphics',
+    heroImage: '/videos/reel2.mp4', // Using the first video as the hero cover
+    gallery: ["/videos/reel2.mp4"], // Stores all videos so you can loop/display them on the detail page
+    description: 'A high-impact collection of short-form vertical reels engineered for maximum audience retention and social media engagement. Built for speed, attention, and visual dominance.',
+  },
+
+  {
+    id: '11',
+    slug: 'vertical-reels-collection',
+    title: 'SHORT-FORM REELS',
+    category: 'CINEMATIC',
+    year: '2026',
+    client: 'Various Brands',
+    role: 'Video Editing & Motion Graphics',
+    heroImage: '/videos/reel3.mp4', // Using the first video as the hero cover
+    gallery: ["/videos/reel3.mp4"], // Stores all videos so you can loop/display them on the detail page
+    description: 'A high-impact collection of short-form vertical reels engineered for maximum audience retention and social media engagement. Built for speed, attention, and visual dominance.',
+  },
+
 ];
 
 // Helper function to get a single project

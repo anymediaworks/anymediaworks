@@ -3,6 +3,9 @@
 import Image from 'next/image';
 import { useState, useEffect, useCallback, useRef } from 'react';
 
+// --- DATA IMPORT ---
+import { projects } from '@/data/projects'; // Adjust path as needed
+
 // Helper function to check if the source is a video
 const isVideo = (src) => {
   return src.match(/\.(mp4|webm|ogg)$/i);
@@ -36,7 +39,6 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
   // Auto-play logic
   useEffect(() => {
     let interval;
-    // Only auto-slide if we aren't in "Playing" mode
     if (isHovered && images.length > 1 && !isPlaying) {
       interval = setInterval(() => {
         nextSlide();
@@ -51,18 +53,17 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
       if (!video) return;
       
       if (isPlaying && index === currentIndex) {
-        // We are in "play" mode, and this is the active slide, so play it
         video.play().catch(e => console.log("Video auto-play prevented:", e));
       } else {
-        // Pause all other videos, or if we exited "play" mode
         video.pause();
-        // Optional: Reset video to start when navigating away
         if (index !== currentIndex) {
           video.currentTime = 0;
         }
       }
     });
   }, [isPlaying, currentIndex]);
+
+  if (!images || images.length === 0) return null;
 
   return (
     <div 
@@ -86,7 +87,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
               <video
                 ref={(el) => (videoRefs.current[index] = el)}
                 src={src}
-                muted // Muted by default to allow auto-play/preview. Change if you want audio on click.
+                muted 
                 loop
                 playsInline
                 className={`w-full h-full object-cover transition-all duration-1000 ease-out transform 
@@ -98,7 +99,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
             ) : (
               <Image 
                 src={src}
-                alt={`${titlePre} ${titleHighlight} - slide ${index + 1}`}
+                alt={`Slide ${index + 1}`}
                 fill
                 className={`object-cover transition-all duration-1000 ease-out transform 
                   ${isPlaying 
@@ -114,14 +115,12 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
       {/* ─── UI ELEMENTS TO HIDE WHEN PLAYING ─── */}
       <div className={`absolute inset-0 transition-opacity duration-500 pointer-events-none ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
         
-        {/* Top Tag (White Pill, Black Text) */}
         {tags && (
           <div className={`absolute left-5 bg-white text-black px-4 py-1.5 rounded-full font-editorial-heading tracking-widest font-black z-30 pointer-events-auto shadow-md ${isPortrait ? 'top-6 text-xs' : 'top-5 text-[10px]'}`}>
             {tags}
           </div>
         )}
         
-        {/* Play Icon (Centered, large transparent circle) */}
         {icon && (
           <div className={`absolute z-30 transition-all duration-500 pointer-events-auto
             ${isPortrait 
@@ -137,14 +136,13 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
           </div>
         )}
 
-        {/* ─── NAVIGATION OVERLAY (Visible on Tablet, Hover on Desktop) ─── */}
+        {/* ─── NAVIGATION OVERLAY ─── */}
         {images.length > 1 && (
           <div className="absolute top-5 right-5 z-50 flex gap-2 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-0 lg:translate-x-4 group-hover:translate-x-0 pointer-events-auto">
             <button 
               onClick={prevSlide}
               className="flex items-center justify-center font-body text-[10px] font-bold tracking-wider text-white hover:text-black transition-colors bg-white/30 hover:bg-white backdrop-blur-md p-1.5 md:px-3 md:py-1.5 rounded-full border border-white/40 shadow-sm"
             >
-              {/* Shows Icon on Mobile & Tablet, Text on Desktop */}
               <span className="material-symbols-outlined text-sm lg:hidden leading-none">chevron_left</span>
               <span className="hidden lg:block">Prev</span>
             </button>
@@ -152,7 +150,6 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
               onClick={nextSlide}
               className="flex items-center justify-center font-body text-[10px] font-bold tracking-wider text-white hover:text-black transition-colors bg-white/30 hover:bg-white backdrop-blur-md p-1.5 md:px-3 md:py-1.5 rounded-full border border-white/40 shadow-sm"
             >
-              {/* Shows Icon on Mobile & Tablet, Text on Desktop */}
               <span className="material-symbols-outlined text-sm lg:hidden leading-none">chevron_right</span>
               <span className="hidden lg:block">Next</span>
             </button>
@@ -169,18 +166,23 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
             <h3 className={`font-editorial-heading font-black transition-colors duration-300 drop-shadow-md m-0 leading-none tracking-tight
               ${isPortrait ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'}
             `}>
-              <span className="text-white block">{titlePre}</span>
-              {titleHighlight && <span className="text-primary block">{titleHighlight}</span>}
+              {/* Supports Arrays or Strings for Dynamic Title Fetching */}
+              <span className="text-white block">
+                {Array.isArray(titlePre) ? titlePre[currentIndex] : titlePre}
+              </span>
+              {titleHighlight && (
+                <span className="text-primary block">
+                  {Array.isArray(titleHighlight) ? titleHighlight[currentIndex] : titleHighlight}
+                </span>
+              )}
             </h3>
             
-            {/* Subtitle visible on Tablet (sm:block), hide behind hover only on Desktop (lg) */}
             {subtitle && (
               <p className={`hidden sm:block font-body text-sm sm:text-base text-white/80 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm mt-3`}>
-                {subtitle}
+                {Array.isArray(subtitle) ? subtitle[currentIndex] : subtitle}
               </p>
             )}
 
-            {/* Dots visible on Mobile & Tablet, hide behind hover only on Desktop (lg) */}
             {images.length > 1 && !isPlaying && (
               <div className="mt-5 flex gap-2 h-[3px] w-full bg-transparent overflow-hidden opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {images.map((_, idx) => (
@@ -192,7 +194,6 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>
@@ -201,13 +202,28 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
 
 export default function Work() {
   
-  const photographyImages = ["/images/brandphotography3.jpeg", "/images/brandphotography2.jpeg", "/images/brandphotography1.png"];
-  const webImages = ["/images/website1.jpeg", "/images/website2.jpeg", "/images/website3.jpeg", "/images/website4.jpeg"];
-  const brandFilmImages = ["/images/brand4.jpeg", "/images/brand3.png", "/images/brand2.png", "/images/brand1.png"];
+  // DYNAMIC FETCHING
+  const photographyImages = projects.filter(p => p.category === 'PHOTOGRAPHY').map(p => p.heroImage);
+  const webImages = projects.filter(p => p.category === 'DIGITAL').map(p => p.heroImage);
+  const brandFilmImages = projects.filter(p => p.category === 'BRANDING' || p.category === 'ADVERTISING').map(p => p.heroImage);
+  const verticalReelImages = projects.filter(p => p.category === 'CINEMATIC').map(p => p.heroImage);
   
-  // Mixed or video arrays now work flawlessly
-  const verticalReelImages = ["/videos/adsreels1.mp4", "/videos/adsreels2.mp4", "/videos/adsreels3.mp4"];
-  const socialCampaignImages = ["/images/campaign1.jpeg", "/images/campaign2.jpeg"]; 
+  // Live Events Fetching (Images + Splitting Dynamic Titles for the Primary Color Highlight)
+  const liveEventsData = projects.filter(p => p.category === 'LIVE EVENTS');
+  const liveEventsImages = liveEventsData.map(p => p.heroImage);
+  
+  // Extract all words EXCEPT the last one for the white text
+  const liveEventsTitlePre = liveEventsData.map(p => {
+    const words = p.title.split(' ');
+    words.pop(); 
+    return words.join(' ');
+  });
+  
+  // Extract ONLY the last word for the primary color highlight
+  const liveEventsTitleHighlight = liveEventsData.map(p => {
+    const words = p.title.split(' ');
+    return words.pop(); 
+  });
 
   return (
     <section className="bg-black text-white px-6 sm:px-10 md:px-16 py-24 sm:py-32 md:py-32">
@@ -229,48 +245,48 @@ export default function Work() {
       {/* ─── PREMIUM BENTO GRID ─── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 auto-rows-[350px] lg:auto-rows-[380px]">
         
-        {/* Box 1: Square Block */}
+        {/* Box 1 */}
         <div className="col-span-1 lg:col-span-1 lg:row-span-1">
           <CarouselCard 
             images={photographyImages}
             titlePre="Brand"
             titleHighlight="Photography"
             subtitle="High-end visuals for modern brands"
-            tags="PHOTOS"
+            tags="PHOTOGRAPHY"
           />
         </div>
 
-        {/* Box 2: Square Block */}
+        {/* Box 2 */}
         <div className="col-span-1 lg:col-span-1 lg:row-span-1">
           <CarouselCard 
             images={webImages}
             titlePre="Web"
             titleHighlight="Experiences"
             subtitle="Fast, scalable & conversion-focused"
-            tags="PLATFORM"
+            tags="DIGITAL"
           />
         </div>
 
-        {/* Box 3: Portrait Block (Vertical Reels - MP4 Video Support Added) */}
+        {/* Box 3: Vertical Reels */}
         <div className="md:col-span-1 lg:col-span-1 lg:row-span-2">
           <CarouselCard 
             images={verticalReelImages}
             titlePre="Short-Form"
             titleHighlight="Reels"
             subtitle="Built for attention & engagement"
-            tags="VERTICAL REEL"
+            tags="CINEMATIC"
             icon="play_arrow"
             isPortrait={true}
           />
         </div>
 
-        {/* Box 4: Portrait Block */}
+        {/* Box 4: Live Events (Dynamic Titles Injected Here) */}
         <div className="md:col-span-1 lg:col-span-1 lg:row-span-2">
            <CarouselCard 
-            images={socialCampaignImages}
-            titlePre="Live"
-            titleHighlight="Events"
-            subtitle="Data-driven viral mechanics"
+            images={liveEventsImages}
+            titlePre={liveEventsTitlePre} // e.g. "WEDDING", "BIRTHDAY", "BABY SHOWER"
+            titleHighlight={liveEventsTitleHighlight} // e.g. "SHOTS", "PHOTOGRAPHY", "PHOTOSHOOT" (in primary color!)
+            subtitle="Capturing authentic moments" 
             tags="LIVE EVENTS"
             icon="play_arrow"
             isPortrait={true}
@@ -284,7 +300,7 @@ export default function Work() {
             titlePre="Brand"
             titleHighlight="Films"
             subtitle="Stories that sell, not just look good"
-            tags="COMMERCIAL FILM"
+            tags="BRANDING"
             isPortrait={false} 
           />
         </div>

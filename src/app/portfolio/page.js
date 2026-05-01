@@ -6,6 +6,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { projects } from '@/data/projects'; 
 
+// HELPER: Check if the source is a video file
+const isVideo = (src) => {
+  return src && src.match(/\.(mp4|webm|ogg)$/i);
+};
+
 export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState('ALL WORK');
 
@@ -69,7 +74,7 @@ export default function PortfolioPage() {
         <div className="w-full max-w-screen-2xl mx-auto px-0 md:px-16">
           <div className="flex overflow-x-auto md:flex-wrap items-center justify-start md:justify-center gap-6 sm:gap-8 md:gap-12 px-6 py-5 md:px-0 md:py-10 font-body font-bold uppercase tracking-[0.15em] text-[10px] sm:text-xs [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             
-            {['ALL WORK', 'CINEMATIC', 'DIGITAL', 'BRANDING', 'PHOTOGRAPHY', 'WEB DESIGN', 'ADVERTISING', 'LIVE EVENTS'].map((filterName) => (
+            {['ALL WORK', 'CINEMATIC', 'DIGITAL', 'BRANDING', 'PHOTOGRAPHY', 'ADVERTISING', 'LIVE EVENTS'].map((filterName) => (
               <button 
                 key={filterName}
                 onClick={() => setActiveFilter(filterName)}
@@ -83,9 +88,8 @@ export default function PortfolioPage() {
                    filterName === 'DIGITAL' ? 'devices' : 
                    filterName === 'BRANDING' ? 'diamond' :
                    filterName === 'PHOTOGRAPHY' ? 'photo_camera' :
-                   filterName === 'WEB DESIGN' ? 'web' :
                    filterName === 'ADVERTISING' ? 'campaign' :
-                   filterName === 'LIVE EVENTS' ? 'local_activity' : // <--- UPDATED THIS LINE
+                   filterName === 'LIVE EVENTS' ? 'local_activity' : 
                    'label'}
                 </span>
                 <span className="whitespace-nowrap">{filterName}</span>
@@ -105,43 +109,61 @@ export default function PortfolioPage() {
       <section className="px-4 sm:px-6 md:px-16 pb-24 md:pb-48 pt-8 sm:pt-12 md:pt-20 bg-zinc-50 min-h-[50vh]">
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           
-          {filteredProjects.map((project) => (
-            <Link 
-              key={project.id} 
-              href={`/portfolio/${project.id}`} 
-              className="group block relative overflow-hidden rounded-xl aspect-square sm:aspect-[4/5] md:aspect-square bg-zinc-200 shadow-sm hover:shadow-2xl transition-shadow duration-700 animate-in fade-in zoom-in-95 duration-500"
-            >
-              <Image
-                src={project.heroImage}
-                alt={project.title}
-                fill
-                /* UPDATED: grayscale-0 on mobile/tablet, grayscale on lg (desktop) */
-                className="w-full h-full object-cover grayscale-0 lg:grayscale opacity-90 transition-all duration-[1500ms] lg:group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
-              />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 lg:via-black/20 to-transparent opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end opacity-100 lg:opacity-0 group-hover:opacity-100 transform translate-y-0 lg:translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                <div className="flex justify-between items-end gap-4">
-                  <div className="flex-1">
-                    <span className="font-body font-bold text-primary uppercase text-[9px] sm:text-[10px] tracking-widest block mb-1 md:mb-2 drop-shadow-md">
-                      {project.category} / {project.year}
-                    </span>
-                    <h3 className="font-editorial-heading text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none text-white drop-shadow-lg break-words">
-                      {project.title}
-                    </h3>
-                  </div>
-                  
-                  <div className="bg-white/20 lg:bg-white/10 backdrop-blur-md rounded-full p-2.5 sm:p-3 border border-white/20 overflow-hidden relative flex-shrink-0">
-                    <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
-                    <span className="material-symbols-outlined relative z-10 text-white group-hover:text-black transform translate-y-0 translate-x-0 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-500 ease-out text-lg sm:text-xl">
-                      arrow_outward
-                    </span>
+          {filteredProjects.map((project) => {
+            // Determine if the heroImage is a video
+            const isVid = isVideo(project.heroImage);
+
+            return (
+              <Link 
+                key={project.id} 
+                href={`/portfolio/${project.id}`} 
+                className="group block relative overflow-hidden rounded-xl aspect-square sm:aspect-[4/5] md:aspect-square bg-zinc-200 shadow-sm hover:shadow-2xl transition-shadow duration-700 animate-in fade-in zoom-in-95 duration-500"
+              >
+                {/* ─── CONDITIONALLY RENDER VIDEO OR IMAGE ─── */}
+                {isVid ? (
+                  <video
+                    src={project.heroImage}
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                    className="absolute inset-0 w-full h-full object-cover grayscale-0 lg:grayscale opacity-90 transition-all duration-[1500ms] lg:group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                  />
+                ) : (
+                  <Image
+                    src={project.heroImage}
+                    alt={project.title}
+                    fill
+                    className="w-full h-full object-cover grayscale-0 lg:grayscale opacity-90 transition-all duration-[1500ms] lg:group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                  />
+                )}
+                
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 lg:via-black/20 to-transparent opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Text Content */}
+                <div className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end opacity-100 lg:opacity-0 group-hover:opacity-100 transform translate-y-0 lg:translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                  <div className="flex justify-between items-end gap-4">
+                    <div className="flex-1">
+                      <span className="font-body font-bold text-primary uppercase text-[9px] sm:text-[10px] tracking-widest block mb-1 md:mb-2 drop-shadow-md">
+                        {project.category} / {project.year}
+                      </span>
+                      <h3 className="font-editorial-heading text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tighter leading-none text-white drop-shadow-lg break-words">
+                        {project.title}
+                      </h3>
+                    </div>
+                    
+                    <div className="bg-white/20 lg:bg-white/10 backdrop-blur-md rounded-full p-2.5 sm:p-3 border border-white/20 overflow-hidden relative flex-shrink-0">
+                      <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+                      <span className="material-symbols-outlined relative z-10 text-white group-hover:text-black transform translate-y-0 translate-x-0 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-500 ease-out text-lg sm:text-xl">
+                        arrow_outward
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
 
           {filteredProjects.length === 0 && (
             <div className="col-span-full py-16 md:py-20 text-center">

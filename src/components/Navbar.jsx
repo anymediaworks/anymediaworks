@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-// 1. Added Premium Material Icons to the navigation array
 const navLinks = [
   { href: '/',      label: 'Home',     icon: 'home' },
   { href: '/about',     label: 'About',    icon: 'visibility' },
@@ -35,8 +34,7 @@ export default function Navbar() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
-  // Optimized Resize Listener (Only fires if menu is actually open)
-  // UPDATED: Changed from 768 to 1024 to keep hamburger on tablets
+  // Optimized Resize Listener
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth >= 1024 && menuOpen) {
@@ -68,30 +66,27 @@ export default function Navbar() {
           }
         `}
       >
-        {/* ─── LOGO: Bulletproof Vertical Roll Hover ─── */}
+        {/* ─── LOGO ─── */}
         <Link
           href="/"
-          className="group flex items-center gap-1 sm:gap-2 text-2xl sm:text-3xl font-black tracking-tight lowercase select-none z-50"
+          // FIX: Added 'relative' so z-50 actually works properly
+          className="group relative flex items-center gap-1 sm:gap-2 text-2xl sm:text-3xl font-black tracking-tight lowercase select-none z-50"
         >
-          {/* Added pt-1 and pb-1 to protect the 'y' tail from clipping */}
           <span className="relative inline-grid overflow-hidden pt-1 pb-1">
-            {/* Default Text - Pushed UP by 120% to guarantee no white bleeding */}
             <span className="col-start-1 row-start-1 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[120%] text-black dark:text-white">
               anymediaworks
             </span>
-            {/* Colored Hover Text - Starts 120% down, slides to exactly 0 */}
             <span className="col-start-1 row-start-1 translate-y-[120%] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 text-primary">
               anymediaworks
             </span>
           </span>
           
-          {/* Spinning Icon */}
           <span className="material-symbols-outlined text-primary opacity-0 transform rotate-[-90deg] -translate-x-4 group-hover:opacity-100 group-hover:rotate-0 group-hover:translate-x-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
             change_history
           </span>
         </Link>
 
-        {/* Desktop Nav (Visible >= 1024px) - UPDATED from md:flex to lg:flex */}
+        {/* Desktop Nav */}
         <nav className="hidden lg:flex gap-6 lg:gap-12 items-center">
           {navLinks.map(({ href, label, icon }) => {
             const isActive = pathname === href;
@@ -107,14 +102,10 @@ export default function Navbar() {
                   ${isActive ? 'text-primary' : 'text-black dark:text-white hover:text-primary'}
                 `}
               >
-                {/* Animated Icon */}
                 <span className="material-symbols-outlined text-[1.1rem] transform group-hover:-translate-y-1 group-hover:rotate-12 transition-all duration-300 ease-out">
                   {icon}
                 </span>
-                
                 <span className="relative z-10">{label}</span>
-                
-                {/* Premium Animated Sweep Underline */}
                 {isActive ? (
                   <span className="absolute bottom-0 left-0 w-full h-[3px] bg-primary"></span>
                 ) : (
@@ -125,22 +116,23 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Mobile & Tablet Hamburger Button with Hover Interaction - UPDATED from md:hidden to lg:hidden */}
+        {/* Mobile & Tablet Hamburger Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
-          className="group lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] z-50 focus:outline-none"
+          // FIX: Added 'relative' so z-50 functions. 
+          className="group relative lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[6px] z-50 focus:outline-none"
         >
-          <span className={`block h-[3px] w-7 bg-black dark:bg-white group-hover:bg-primary rounded transition-all duration-300 origin-center ${menuOpen ? 'translate-y-[9px] rotate-45' : ''}`} />
-          <span className={`block h-[3px] w-7 bg-black dark:bg-white group-hover:bg-primary rounded transition-all duration-300 ${menuOpen ? 'opacity-0 translate-x-4' : 'opacity-100'}`} />
-          <span className={`block h-[3px] w-7 bg-black dark:bg-white group-hover:bg-primary rounded transition-all duration-300 origin-center ${menuOpen ? '-translate-y-[9px] -rotate-45' : ''}`} />
+          {/* FIX: Added pointer-events-none to the spans so touches don't misfire on iOS */}
+          <span className={`pointer-events-none block h-[3px] w-7 bg-black dark:bg-white group-hover:bg-primary rounded transition-all duration-300 origin-center ${menuOpen ? 'translate-y-[9px] rotate-45' : ''}`} />
+          <span className={`pointer-events-none block h-[3px] w-7 bg-black dark:bg-white group-hover:bg-primary rounded transition-all duration-300 ${menuOpen ? 'opacity-0 translate-x-4' : 'opacity-100'}`} />
+          <span className={`pointer-events-none block h-[3px] w-7 bg-black dark:bg-white group-hover:bg-primary rounded transition-all duration-300 origin-center ${menuOpen ? '-translate-y-[9px] -rotate-45' : ''}`} />
         </button>
       </header>
 
       {/* ─── PREMIUM MOBILE/TABLET MENU OVERLAY ─── */}
-      {/* UPDATED from md:hidden to lg:hidden */}
       <div
         id="mobile-menu"
         role="dialog"
@@ -148,12 +140,12 @@ export default function Navbar() {
         className={`
           fixed inset-0 z-[90] lg:hidden
           bg-white dark:bg-black
-          flex flex-col justify-center items-start pl-10 sm:pl-20
+          /* FIX: Changed justify-center to pt-32 + overflow-y-auto so top links never hide under the header */
+          flex flex-col justify-start items-start pt-32 pb-12 pl-10 sm:pl-20 overflow-y-auto
           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
           ${menuOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-full'}
         `}
       >
-        {/* Subtle Background Grid for Mobile Menu */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)] z-0 pointer-events-none"></div>
 
         <nav className="flex flex-col items-start gap-8 relative z-10 w-full">
@@ -163,6 +155,8 @@ export default function Navbar() {
               <Link
                 key={href}
                 href={href}
+                // FIX: Explicitly close the menu on click, handling "same route" clicks perfectly.
+                onClick={() => setMenuOpen(false)} 
                 aria-current={isActive ? 'page' : undefined}
                 style={{ transitionDelay: menuOpen ? `${i * 100}ms` : '0ms' }}
                 className={`
@@ -174,14 +168,12 @@ export default function Navbar() {
                   ${isActive ? 'text-primary' : 'text-black dark:text-white hover:text-primary'}
                 `}
               >
-                {/* Sliding Menu Icon */}
                 <span className="material-symbols-outlined text-[0.8em] opacity-50 group-hover:opacity-100 transform group-hover:-translate-y-1 group-hover:rotate-12 transition-all duration-300">
                   {icon}
                 </span>
                 
                 <span className="relative pb-2">
                   {label}
-                  {/* Sweep Underline for Mobile */}
                   {isActive ? (
                     <span className="absolute bottom-0 left-0 w-full h-[5px] bg-primary"></span>
                   ) : (
@@ -194,7 +186,7 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Spacer to prevent content from hiding under the fixed header */}
+      {/* Spacer */}
       <div className="h-[72px] sm:h-[80px] md:h-[96px] bg-transparent" aria-hidden="true" />
     </>
   );
