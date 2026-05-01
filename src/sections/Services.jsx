@@ -57,7 +57,7 @@ export default function Services() {
             src="/images/content_creation.jpeg" 
             alt="Content creation by Anymediaworks" 
             fill
-            className="object-cover opacity-70 grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-105 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-70 grayscale-0 sm:grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-105 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 sm:group-hover:opacity-100 transition-opacity duration-700" />
           <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-end z-20">
@@ -79,7 +79,7 @@ export default function Services() {
             src="/images/ui-ux.jpeg" 
             alt="UI/UX Design by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-110 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 sm:grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-110 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex flex-col justify-end z-20">
@@ -98,7 +98,7 @@ export default function Services() {
             src="/images/photography-home.jpeg" 
             alt="Photography by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-110 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 sm:grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-110 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex flex-col justify-end z-20">
@@ -117,7 +117,7 @@ export default function Services() {
             src="/images/web and mobile.jpeg" 
             alt="Web & Mobile Development by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-105 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 sm:grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-105 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-end z-20">
@@ -139,7 +139,7 @@ export default function Services() {
             src="/images/cinematography.jpeg" 
             alt="Cinematography by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-110 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 sm:grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-110 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex flex-col justify-end z-20">
@@ -158,7 +158,7 @@ export default function Services() {
             src="/images/videoediting-home.jpeg" 
             alt="Video Editing by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-110 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 sm:grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-110 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex flex-col justify-end z-20">
@@ -177,7 +177,7 @@ export default function Services() {
             src="/images/seo-digitalmarketing.jpeg" 
             alt="Digital Strategy & Marketing by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-105 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 sm:grayscale sm:group-hover:grayscale-0 scale-100 sm:group-hover:scale-105 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-end z-20">

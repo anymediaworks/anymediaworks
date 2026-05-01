@@ -20,7 +20,8 @@ export default function ServicesPage() {
           alt="Hero Background"
           fill
           priority
-          className="object-cover object-center z-[-2] grayscale opacity-40 scale-100 transition-all duration-[1200ms] ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105"
+          /* UPDATED: grayscale-0 by default, lg:grayscale for desktop */
+          className="object-cover object-center z-[-2] grayscale-0 lg:grayscale opacity-40 scale-100 transition-all duration-[1200ms] ease-[cubic-bezier(0.33,1,0.68,1)] lg:group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105"
         />
 
         {/* Dark Overlay */}
@@ -95,7 +96,8 @@ export default function ServicesPage() {
             <div className="absolute -right-2 -bottom-2 md:-right-4 md:-bottom-4 w-full h-full bg-zinc-200 z-0"></div>
             <img
               alt="Strategy meeting"
-              className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              /* UPDATED: grayscale-0 lg:grayscale lg:hover:grayscale-0 */
+              className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale-0 lg:grayscale lg:hover:grayscale-0 transition-all duration-700"
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop"
             />
           </div>
@@ -107,7 +109,8 @@ export default function ServicesPage() {
             <div className="absolute -left-2 -top-2 md:-left-4 md:-top-4 w-full h-full bg-black z-0"></div>
             <img
               alt="Content production studio"
-              className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              /* UPDATED: grayscale-0 lg:grayscale lg:hover:grayscale-0 */
+              className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale-0 lg:grayscale lg:hover:grayscale-0 transition-all duration-700"
               src="/images/service2.jpeg"
             />
           </div>
@@ -230,7 +233,8 @@ export default function ServicesPage() {
               <div className="absolute -right-2 -bottom-2 md:-right-4 md:-bottom-4 w-full h-full bg-zinc-800 z-0"></div>
               <img
                 alt="Web development interface"
-                className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                /* UPDATED: grayscale-0 lg:grayscale lg:hover:grayscale-0 */
+                className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale-0 lg:grayscale lg:hover:grayscale-0 transition-all duration-700"
                 src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop"
               />
             </div>
@@ -242,7 +246,8 @@ export default function ServicesPage() {
               <div className="absolute -left-2 -top-2 md:-left-4 md:-top-4 w-full h-full bg-zinc-800 z-0"></div>
               <img
                 alt="Mobile app development"
-                className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                /* UPDATED: grayscale-0 lg:grayscale lg:hover:grayscale-0 */
+                className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale-0 lg:grayscale lg:hover:grayscale-0 transition-all duration-700"
                 src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200&auto=format&fit=crop"
               />
             </div>
@@ -272,7 +277,8 @@ export default function ServicesPage() {
                   key={key}
                   src="https://skillicons.dev/icons?i=html,css,js,ts,react,nextjs,tailwind,nodejs,aws,firebase,apple,android,flutter,dart,figma&theme=dark&perline=15"
                   alt="Tech Stack Icons"
-                  className="h-10 sm:h-12 md:h-16 opacity-70 hover:opacity-100 transition-opacity duration-300 pointer-events-none select-none"
+                  /* UPDATED: Always full color, but full opacity on mobile, slightly faded on desktop until hover */
+                  className="h-10 sm:h-12 md:h-16 opacity-100 lg:opacity-70 lg:hover:opacity-100 transition-opacity duration-300 pointer-events-none select-none"
                 />
               ))}
             </div>
@@ -316,7 +322,8 @@ export default function ServicesPage() {
             <div className="absolute -left-2 -bottom-2 md:-left-4 md:-bottom-4 w-full h-full bg-primary/20 z-0"></div>
             <img
               alt="Marketing analytics"
-              className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              /* UPDATED: grayscale-0 lg:grayscale lg:group-hover:grayscale-0 */
+              className="relative z-10 w-full h-[300px] sm:h-[400px] md:h-[600px] object-cover grayscale-0 lg:grayscale lg:group-hover:grayscale-0 transition-all duration-700"
               src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop"
             />
           </div>

@@ -23,7 +23,8 @@ export default function PortfolioPage() {
           alt="Hero Background"
           fill 
           priority 
-          className="object-cover object-center z-0 grayscale opacity-40 scale-100 transition-all duration-[1200ms] group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105" 
+          /* UPDATED: grayscale-0 on mobile/tablet, grayscale on lg (desktop) */
+          className="object-cover object-center z-0 grayscale-0 lg:grayscale opacity-40 scale-100 transition-all duration-[1200ms] lg:group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105" 
         />
         <div className="absolute inset-0 bg-black/60 z-0 pointer-events-none transition-colors duration-[1200ms] group-hover:bg-black/40"></div>
 
@@ -65,15 +66,13 @@ export default function PortfolioPage() {
 
       {/* ─── DYNAMIC FILTER NAVIGATION (MOBILE OPTIMIZED) ─── */}
       <section className="sticky top-0 z-40 bg-zinc-50/90 backdrop-blur-xl border-b border-zinc-200">
-        {/* We use padding on the wrapper and a nested container to allow the scroll to bleed to the edges nicely on mobile */}
         <div className="w-full max-w-screen-2xl mx-auto px-0 md:px-16">
           <div className="flex overflow-x-auto md:flex-wrap items-center justify-start md:justify-center gap-6 sm:gap-8 md:gap-12 px-6 py-5 md:px-0 md:py-10 font-body font-bold uppercase tracking-[0.15em] text-[10px] sm:text-xs [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             
-            {['ALL WORK', 'CINEMATIC', 'DIGITAL', 'BRANDING', 'PHOTOGRAPHY', 'WEB DESIGN', 'ADVERTISING', 'SOCIAL CAMPAIGN'].map((filterName) => (
+            {['ALL WORK', 'CINEMATIC', 'DIGITAL', 'BRANDING', 'PHOTOGRAPHY', 'WEB DESIGN', 'ADVERTISING', 'LIVE EVENTS'].map((filterName) => (
               <button 
                 key={filterName}
                 onClick={() => setActiveFilter(filterName)}
-                /* shrink-0 is CRITICAL here so text doesn't wrap/squish inside the scrolling container */
                 className={`group relative flex-shrink-0 flex items-center gap-1.5 sm:gap-2 pb-2 transition-all duration-300 ${
                   activeFilter === filterName ? 'text-black' : 'text-zinc-400 hover:text-black'
                 }`}
@@ -86,7 +85,7 @@ export default function PortfolioPage() {
                    filterName === 'PHOTOGRAPHY' ? 'photo_camera' :
                    filterName === 'WEB DESIGN' ? 'web' :
                    filterName === 'ADVERTISING' ? 'campaign' :
-                   filterName === 'SOCIAL CAMPAIGN' ? 'share' : 
+                   filterName === 'LIVE EVENTS' ? 'local_activity' : // <--- UPDATED THIS LINE
                    'label'}
                 </span>
                 <span className="whitespace-nowrap">{filterName}</span>
@@ -97,7 +96,6 @@ export default function PortfolioPage() {
               </button>
             ))}
             
-            {/* Added a spacer element at the end of the scroll container to ensure the last item doesn't stick directly to the right edge of the screen on mobile */}
             <div className="w-4 flex-shrink-0 md:hidden"></div>
           </div>
         </div>
@@ -117,12 +115,13 @@ export default function PortfolioPage() {
                 src={project.heroImage}
                 alt={project.title}
                 fill
-                className="w-full h-full object-cover grayscale opacity-90 transition-all duration-[1500ms] group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                /* UPDATED: grayscale-0 on mobile/tablet, grayscale on lg (desktop) */
+                className="w-full h-full object-cover grayscale-0 lg:grayscale opacity-90 transition-all duration-[1500ms] lg:group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 md:via-black/20 to-transparent opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
-              {/* On mobile (default), text is always visible but shifted. On md+ screens, it hides until hover. */}
-              <div className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end opacity-100 md:opacity-0 group-hover:opacity-100 transform translate-y-0 md:translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 lg:via-black/20 to-transparent opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end opacity-100 lg:opacity-0 group-hover:opacity-100 transform translate-y-0 lg:translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
                 <div className="flex justify-between items-end gap-4">
                   <div className="flex-1">
                     <span className="font-body font-bold text-primary uppercase text-[9px] sm:text-[10px] tracking-widest block mb-1 md:mb-2 drop-shadow-md">
@@ -133,7 +132,7 @@ export default function PortfolioPage() {
                     </h3>
                   </div>
                   
-                  <div className="bg-white/20 md:bg-white/10 backdrop-blur-md rounded-full p-2.5 sm:p-3 border border-white/20 overflow-hidden relative flex-shrink-0">
+                  <div className="bg-white/20 lg:bg-white/10 backdrop-blur-md rounded-full p-2.5 sm:p-3 border border-white/20 overflow-hidden relative flex-shrink-0">
                     <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
                     <span className="material-symbols-outlined relative z-10 text-white group-hover:text-black transform translate-y-0 translate-x-0 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-500 ease-out text-lg sm:text-xl">
                       arrow_outward

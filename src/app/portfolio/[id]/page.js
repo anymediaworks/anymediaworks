@@ -161,7 +161,8 @@ export default async function ProjectDetailsPage({ params }) {
           <div className="bg-black p-8 sm:p-12 md:p-24 rounded-2xl md:rounded-3xl overflow-hidden relative group/next cursor-pointer border-4 border-transparent hover:border-primary transition-all duration-500">
             
             {/* Background Image of the next project (Ghosted/Faded) */}
-            <div className="absolute inset-0 z-0 opacity-20 grayscale transition-all duration-700 group-hover/next:scale-110 group-hover/next:opacity-40">
+            {/* UPDATED: grayscale-0 on mobile/tablet, grayscale on lg (desktop) */}
+            <div className="absolute inset-0 z-0 opacity-20 grayscale-0 lg:grayscale transition-all duration-700 group-hover/next:scale-110 lg:group-hover/next:grayscale-0 group-hover/next:opacity-40">
                 <Image 
                     src={nextProject.heroImage || nextProject.image || "https://images.unsplash.com/photo-1515405295579-ba7b45403062?q=80&w=2000"} 
                     alt={`Next Project: ${nextProject.title}`} 

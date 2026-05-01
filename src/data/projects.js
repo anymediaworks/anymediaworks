@@ -60,7 +60,7 @@ export const projects = [
     id: '06',
     slug: 'evergreen-social-campaign',
     title: 'EVERGREEN CO.',
-    category: 'SOCIAL CAMPAIGN',
+    category: 'LIVE EVENTS',
     year: '2024',
     client: 'EverGreen Co.',
     role: 'Art Direction, Campaign Strategy',
