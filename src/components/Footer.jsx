@@ -5,7 +5,7 @@ export default function Footer() {
   const socialLinks = [
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/anymediaworks?igsh=NGI3bG5qeXd5Zm9m',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -16,7 +16,7 @@ export default function Footer() {
     },
     {
       name: 'LinkedIn',
-      href: '#',
+      href: 'https://x.com/anymediaworks?fbclid=PAb21jcARh3ZZleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAad297U42D4wgOMgHpddfL3Wv6_pkD0ffyZrGE2u1Bj7JKEi5VQwYuofXkCzsA_aem_cOZR57hYie7xj3poBZ8Y6A',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path>

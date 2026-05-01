@@ -285,7 +285,7 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        {/* 05 Marketing & Growth */}
+       {/* 05 Marketing & Growth */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-center">
           <div className="lg:col-span-5 relative mt-4 lg:mt-0 z-10 order-2 lg:order-1">
             <span className="font-editorial-heading text-7xl sm:text-8xl md:text-9xl font-black text-primary opacity-20 absolute -top-8 sm:-top-12 left-0 md:-top-16 md:-left-4 select-none pointer-events-none">05</span>
@@ -306,11 +306,29 @@ export default function ServicesPage() {
                 <h4 className="font-editorial-heading font-black text-lg sm:text-xl md:text-2xl uppercase mb-1">Paid Ads</h4>
                 <p className="font-body text-xs sm:text-sm font-semibold text-zinc-500 uppercase tracking-widest">Meta / Google</p>
               </div>
+              
+              {/* UPDATED: Bulletproof SVG Magnet Icon */}
               <div className="border-t-2 sm:border-t-4 border-black pt-3 sm:pt-4">
-                <span className="material-symbols-outlined text-3xl sm:text-4xl mb-1 sm:mb-2 text-primary">magnet</span>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  className="w-8 h-8 sm:w-10 sm:h-10 mb-1 sm:mb-2 text-primary"
+                >
+                  <path d="M4 13v-3a8 8 0 0 1 16 0v3"/>
+                  <rect x="4" y="13" width="4" height="8"/>
+                  <rect x="16" y="13" width="4" height="8"/>
+                  <path d="M4 17h4"/>
+                  <path d="M16 17h4"/>
+                </svg>
                 <h4 className="font-editorial-heading font-black text-lg sm:text-xl md:text-2xl uppercase mb-1">Lead Gen</h4>
                 <p className="font-body text-xs sm:text-sm font-semibold text-zinc-500 uppercase tracking-widest">Inbound</p>
               </div>
+
               <div className="border-t-2 sm:border-t-4 border-black pt-3 sm:pt-4">
                 <span className="material-symbols-outlined text-3xl sm:text-4xl mb-1 sm:mb-2 text-primary">query_stats</span>
                 <h4 className="font-editorial-heading font-black text-lg sm:text-xl md:text-2xl uppercase mb-1">Analytics</h4>
@@ -445,7 +463,7 @@ export default function ServicesPage() {
         {/* Why Choose Us - Centered layout for Desktop */}
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           <h2 className="font-editorial-heading text-4xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter mb-12 sm:mb-16 text-center">
-            WHY ANY<br className="sm:hidden" />MEDIA WORKS?
+            WHY <br className="sm:hidden" />anymediaworks?
           </h2>
           <ul className="space-y-8 md:space-y-12 w-full">
             <li className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 border-b border-zinc-800 pb-8 group text-center sm:text-left">

@@ -14,7 +14,7 @@ export default function Hero() {
           loop
           playsInline
           preload="auto"
-          poster="/images/video-poster.jpg" // MUST ADD: A screenshot of the video's first frame to prevent black flash
+          poster="/images/homehero.webp" // MUST ADD: A screenshot of the video's first frame to prevent black flash
           className="w-full h-full object-cover scale-105 sm:scale-110" 
         >
           <source src="/videos/animate_3d.mp4" type="video/mp4" />

@@ -92,7 +92,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
                 className={`w-full h-full object-cover transition-all duration-1000 ease-out transform 
                   ${isPlaying 
                     ? 'grayscale-0 brightness-100 scale-100' 
-                    : 'grayscale-0 brightness-95 md:grayscale md:brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-95 group-hover:scale-105' 
+                    : 'grayscale-0 brightness-95 lg:grayscale lg:brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-95 group-hover:scale-105' 
                   }`}
               />
             ) : (
@@ -103,7 +103,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
                 className={`object-cover transition-all duration-1000 ease-out transform 
                   ${isPlaying 
                     ? 'grayscale-0 brightness-100 scale-100' 
-                    : 'grayscale-0 brightness-95 md:grayscale md:brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-95 group-hover:scale-105' 
+                    : 'grayscale-0 brightness-95 lg:grayscale lg:brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-95 group-hover:scale-105' 
                   }`} 
               />
             )}
@@ -137,22 +137,24 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
           </div>
         )}
 
-        {/* ─── NAVIGATION OVERLAY ─── */}
+        {/* ─── NAVIGATION OVERLAY (Visible on Tablet, Hover on Desktop) ─── */}
         {images.length > 1 && (
-          <div className="absolute top-5 right-5 z-50 flex gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-0 md:translate-x-4 group-hover:translate-x-0 pointer-events-auto">
+          <div className="absolute top-5 right-5 z-50 flex gap-2 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-0 lg:translate-x-4 group-hover:translate-x-0 pointer-events-auto">
             <button 
               onClick={prevSlide}
               className="flex items-center justify-center font-body text-[10px] font-bold tracking-wider text-white hover:text-black transition-colors bg-white/30 hover:bg-white backdrop-blur-md p-1.5 md:px-3 md:py-1.5 rounded-full border border-white/40 shadow-sm"
             >
-              <span className="material-symbols-outlined text-sm md:hidden leading-none">chevron_left</span>
-              <span className="hidden md:block">Prev</span>
+              {/* Shows Icon on Mobile & Tablet, Text on Desktop */}
+              <span className="material-symbols-outlined text-sm lg:hidden leading-none">chevron_left</span>
+              <span className="hidden lg:block">Prev</span>
             </button>
             <button 
               onClick={nextSlide}
               className="flex items-center justify-center font-body text-[10px] font-bold tracking-wider text-white hover:text-black transition-colors bg-white/30 hover:bg-white backdrop-blur-md p-1.5 md:px-3 md:py-1.5 rounded-full border border-white/40 shadow-sm"
             >
-              <span className="material-symbols-outlined text-sm md:hidden leading-none">chevron_right</span>
-              <span className="hidden md:block">Next</span>
+              {/* Shows Icon on Mobile & Tablet, Text on Desktop */}
+              <span className="material-symbols-outlined text-sm lg:hidden leading-none">chevron_right</span>
+              <span className="hidden lg:block">Next</span>
             </button>
           </div>
         )}
@@ -161,7 +163,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
         <div className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent flex flex-col justify-end z-20 h-3/4 pointer-events-none ${isPortrait ? 'p-6 md:p-8' : 'p-5 md:p-6'}`}>
           
           <div className={`transform transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] flex flex-col justify-end pointer-events-none
-            ${subtitle ? 'translate-y-0 md:translate-y-14 group-hover:translate-y-0' : 'translate-y-0 md:translate-y-4 group-hover:translate-y-0'}
+            ${subtitle ? 'translate-y-0 lg:translate-y-14 group-hover:translate-y-0' : 'translate-y-0 lg:translate-y-4 group-hover:translate-y-0'}
           `}>
             
             <h3 className={`font-editorial-heading font-black transition-colors duration-300 drop-shadow-md m-0 leading-none tracking-tight
@@ -171,16 +173,16 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
               {titleHighlight && <span className="text-primary block">{titleHighlight}</span>}
             </h3>
             
-            {/* Hidden entirely on mobile, visible only on hover for desktop */}
+            {/* Subtitle visible on Tablet (sm:block), hide behind hover only on Desktop (lg) */}
             {subtitle && (
-              <p className={`hidden md:block font-body text-sm sm:text-base text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm mt-3`}>
+              <p className={`hidden sm:block font-body text-sm sm:text-base text-white/80 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm mt-3`}>
                 {subtitle}
               </p>
             )}
 
-            {/* Show progress dots by default on mobile, hide and rely on hover for desktop */}
+            {/* Dots visible on Mobile & Tablet, hide behind hover only on Desktop (lg) */}
             {images.length > 1 && !isPlaying && (
-              <div className="mt-5 flex gap-2 h-[3px] w-full bg-transparent overflow-hidden opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="mt-5 flex gap-2 h-[3px] w-full bg-transparent overflow-hidden opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {images.map((_, idx) => (
                   <div 
                     key={idx} 
