@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -57,7 +57,7 @@ export default function Navbar() {
       {/* ─── HEADER ─── */}
       <header
         className={`
-          fixed top-0 left-0 right-0 z-50 w-full
+          fixed top-0 left-0 right-0 z-[100] w-full
           flex justify-between items-center
           px-6 md:px-12 lg:px-16
           py-5 sm:py-6 md:py-8
@@ -146,7 +146,7 @@ export default function Navbar() {
         role="dialog"
         aria-modal="true"
         className={`
-          fixed inset-0 z-40 lg:hidden
+          fixed inset-0 z-[90] lg:hidden
           bg-white dark:bg-black
           flex flex-col justify-center items-start pl-10 sm:pl-20
           transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
