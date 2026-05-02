@@ -50,7 +50,7 @@ export default function ContactPage() {
           <section className="order-2 lg:order-1 mt-4 lg:mt-0">
             <form className="space-y-10 sm:space-y-12 lg:space-y-16">
               
-              {/* 2-Column Grid for Text Inputs - Adjusted to md:grid-cols-2 for better tablet landscape/portrait rendering */}
+              {/* 2-Column Grid for Text Inputs */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8 lg:gap-12 lg:gap-x-16">
                 
                 {/* Name Field */}
@@ -149,16 +149,37 @@ export default function ContactPage() {
                     required
                   >
                     <option value="" disabled className="text-zinc-400">SELECT SERVICES</option>
-                    <option value="Social Media Marketing" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">Social Media Marketing</option>
-                    <option value="WordPress Website Development" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">WordPress Website Development</option>
-                    <option value="Google Ads" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">Google Ads</option>
-                    <option value="Social Media Ads" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">Social Media Ads</option>
-                    <option value="Google My Business" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">Google My Business</option>
-                    <option value="Content Marketing" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">Content Marketing</option>
-                    <option value="Video Marketing" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">Video Marketing</option>
-                    <option value="Corporate Branding" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">Corporate Branding</option>
-                    <option value="Search Engine Optimization" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium">Search Engine Optimization</option>
+                    
+                    {/* Creative Production Category */}
+                    <optgroup label="Creative Production" className="font-['League_Spartan'] text-zinc-500 font-bold uppercase text-xs sm:text-sm bg-white">
+                      <option value="Video Production" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Video Production (Shoot + Direction)</option>
+                      <option value="Video Editing & Post-Production" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Video Editing & Post-Production</option>
+                      <option value="Motion Graphics & Animation" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Motion Graphics & Animation</option>
+                      <option value="Photography" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Photography</option>
+                      <option value="Videography" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Videography</option>
+                    </optgroup>
+
+                    {/* Design Category */}
+                    <optgroup label="Design" className="font-['League_Spartan'] text-zinc-500 font-bold uppercase text-xs sm:text-sm bg-white mt-2">
+                      <option value="Graphic Design" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Graphic Design (Ads, Social Media, Branding)</option>
+                    </optgroup>
+
+                    {/* Marketing & Growth Category */}
+                    <optgroup label="Marketing & Growth" className="font-['League_Spartan'] text-zinc-500 font-bold uppercase text-xs sm:text-sm bg-white mt-2">
+                      <option value="Social Media Marketing" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Social Media Marketing</option>
+                      <option value="Content Marketing" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Content Marketing</option>
+                      <option value="SEO" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">SEO (Rank Higher on Google)</option>
+                      <option value="Google Ads" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Google Ads</option>
+                      <option value="Social Media Ads" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Social Media Ads</option>
+                    </optgroup>
+
+                    {/* Packages Category */}
+                    <optgroup label="Packages" className="font-['League_Spartan'] text-zinc-500 font-bold uppercase text-xs sm:text-sm bg-white mt-2">
+                      <option value="Content Creation Package" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Content Creation Package</option>
+                      <option value="Social Media Growth Package" className="text-sm sm:text-base lg:text-lg normal-case font-body font-medium text-black">Social Media Growth Package</option>
+                    </optgroup>
                   </select>
+                  
                   {/* Custom Dropdown Arrow */}
                   <span className="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-2xl sm:text-3xl lg:text-4xl text-black">
                     arrow_drop_down
