@@ -57,16 +57,16 @@ export default function Services() {
             src="/images/content_creation.jpeg" 
             alt="Content creation by Anymediaworks" 
             fill
-            className="object-cover opacity-70 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 scale-100 lg:group-hover:scale-105 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-70 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 scale-100 xl:group-hover:scale-105 transition-all duration-1000 ease-out" 
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 lg:group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 xl:group-hover:opacity-100 transition-opacity duration-700" />
           <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-end z-20">
-            <div className="transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-700 ease-out">
+            <div className="transform translate-y-0 xl:translate-y-4 xl:group-hover:translate-y-0 transition-transform duration-700 ease-out">
               <h3 className="font-editorial-heading text-3xl sm:text-4xl lg:text-6xl font-black tracking-tight mb-2 sm:mb-4 leading-none">
                 <span className="text-white block pb-1">Content</span>
                 <span className="text-primary block pb-1">Creation</span>
               </h3>
-              <p className="text-white/90 font-body text-sm sm:text-base lg:text-xl max-w-md opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-700 delay-100 mt-2">
+              <p className="text-white/90 font-body text-sm sm:text-base lg:text-xl max-w-md opacity-100 xl:opacity-0 xl:group-hover:opacity-100 transition-opacity duration-700 delay-100 mt-2">
                 Editorial grade digital storytelling to capture and hold attention.
               </p>
             </div>
@@ -79,11 +79,11 @@ export default function Services() {
             src="/images/ui-ux.jpeg" 
             alt="UI/UX Design by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 scale-100 lg:group-hover:scale-110 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 scale-100 xl:group-hover:scale-110 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex flex-col justify-end z-20">
-            <div className="transform translate-y-0 lg:translate-y-2 lg:group-hover:translate-y-0 transition-transform duration-500">
+            <div className="transform translate-y-0 xl:translate-y-2 xl:group-hover:translate-y-0 transition-transform duration-500">
               <h3 className="font-editorial-heading text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-wide break-words leading-none">
                 <span className="text-white block pb-1">UI/UX</span>
                 <span className="text-primary block pb-1">Design</span>
@@ -98,11 +98,11 @@ export default function Services() {
             src="/images/photography-home.jpeg" 
             alt="Photography by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 scale-100 lg:group-hover:scale-110 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 scale-100 xl:group-hover:scale-110 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex flex-col justify-end z-20">
-            <div className="transform translate-y-0 lg:translate-y-2 lg:group-hover:translate-y-0 transition-transform duration-500">
+            <div className="transform translate-y-0 xl:translate-y-2 xl:group-hover:translate-y-0 transition-transform duration-500">
               <h3 className="font-editorial-heading text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-wide break-words leading-none">
                 <span className="text-white block pb-1">Brand</span>
                 <span className="text-primary block pb-1">Photography</span>
@@ -117,16 +117,16 @@ export default function Services() {
             src="/images/web and mobile.jpeg" 
             alt="Web & Mobile Development by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 scale-100 lg:group-hover:scale-105 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 scale-100 xl:group-hover:scale-105 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-end z-20">
-            <div className="transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-700 ease-out">
+            <div className="transform translate-y-0 xl:translate-y-4 xl:group-hover:translate-y-0 transition-transform duration-700 ease-out">
               <h3 className="font-editorial-heading text-2xl sm:text-3xl lg:text-4xl font-black mb-2 sm:mb-3 leading-none">
                 <span className="text-white block pb-1">Web & Mobile</span>
                 <span className="text-primary block pb-1">Development</span>
               </h3>
-              <p className="text-white/90 font-body text-sm sm:text-base opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-700 delay-100 mt-2">
+              <p className="text-white/90 font-body text-sm sm:text-base opacity-100 xl:opacity-0 xl:group-hover:opacity-100 transition-opacity duration-700 delay-100 mt-2">
                 High-performance platforms engineered for scale and aesthetics.
               </p>
             </div>
@@ -139,11 +139,11 @@ export default function Services() {
             src="/images/cinematography.jpeg" 
             alt="Cinematography by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 scale-100 lg:group-hover:scale-110 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 scale-100 xl:group-hover:scale-110 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex flex-col justify-end z-20">
-            <div className="transform translate-y-0 lg:translate-y-2 lg:group-hover:translate-y-0 transition-transform duration-500">
+            <div className="transform translate-y-0 xl:translate-y-2 xl:group-hover:translate-y-0 transition-transform duration-500">
               <h3 className="font-editorial-heading text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-wide break-words leading-none">
                 <span className="text-white block pb-1">Film &</span>
                 <span className="text-primary block pb-1">Cinematography</span>
@@ -158,11 +158,11 @@ export default function Services() {
             src="/images/videoediting-home.jpeg" 
             alt="Video Editing by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 scale-100 lg:group-hover:scale-110 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 scale-100 xl:group-hover:scale-110 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8 flex flex-col justify-end z-20">
-            <div className="transform translate-y-0 lg:translate-y-2 lg:group-hover:translate-y-0 transition-transform duration-500">
+            <div className="transform translate-y-0 xl:translate-y-2 xl:group-hover:translate-y-0 transition-transform duration-500">
               <h3 className="font-editorial-heading text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-wide break-words leading-none">
                 <span className="text-white block pb-1">Video</span>
                 <span className="text-primary block pb-1">Editing</span>
@@ -177,16 +177,16 @@ export default function Services() {
             src="/images/seo-digitalmarketing.jpeg" 
             alt="Digital Strategy & Marketing by Anymediaworks" 
             fill
-            className="object-cover opacity-60 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 scale-100 lg:group-hover:scale-105 transition-all duration-1000 ease-out" 
+            className="object-cover opacity-60 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 scale-100 xl:group-hover:scale-105 transition-all duration-1000 ease-out" 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8 lg:p-10 flex flex-col justify-end z-20">
-            <div className="transform translate-y-0 lg:translate-y-4 lg:group-hover:translate-y-0 transition-transform duration-700 ease-out">
+            <div className="transform translate-y-0 xl:translate-y-4 xl:group-hover:translate-y-0 transition-transform duration-700 ease-out">
               <h3 className="font-editorial-heading text-2xl sm:text-3xl lg:text-4xl font-black mb-2 sm:mb-3 leading-none">
                 <span className="text-white block pb-1">Digital Strategy</span>
                 <span className="text-primary block pb-1">& SEO</span>
               </h3>
-              <p className="text-white/90 font-body text-sm sm:text-base opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-700 delay-100 mt-2">
+              <p className="text-white/90 font-body text-sm sm:text-base opacity-100 xl:opacity-0 xl:group-hover:opacity-100 transition-opacity duration-700 delay-100 mt-2">
                 Data-driven marketing to dominate your niche.
               </p>
             </div>
