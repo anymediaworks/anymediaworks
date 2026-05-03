@@ -47,7 +47,7 @@ export default function Hero() {
 
           {/* Heading - Adjusted clamp for better mobile wrapping */}
           <h1 className="font-editorial-heading font-black leading-[0.9] sm:leading-[0.85] tracking-[-0.05em] sm:tracking-[-0.07em] text-white text-[clamp(2.5rem,11vw,120px)] w-full">
-            <span className="font-script font-normal tracking-normal lowercase capitalize text-primary block mb-1 sm:mb-4 transform -rotate-2 origin-left hover:scale-105 hover:-rotate-4 transition-all duration-500 cursor-default w-max drop-shadow-sm pointer-events-auto text-[clamp(2rem,8vw,80px)]">
+            <span className="font-script tracking-normal lowercase capitalize text-primary block mb-1 sm:mb-4 transform -rotate-2 origin-left hover:scale-105 hover:-rotate-4 transition-all duration-500 cursor-default w-max drop-shadow-sm pointer-events-auto text-[clamp(2rem,8vw,80px)]">
               We Turn
             </span>
             <span className="pointer-events-auto drop-shadow-lg block sm:inline">CONTENT INTO{' '}</span>
