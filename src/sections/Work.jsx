@@ -13,7 +13,6 @@ const isVideo = (src) => {
 };
 
 // Reusable Carousel Component for the Bento Grid
-// UPDATED: Added `centerIcon = false` to props
 const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, isPortrait = false, centerIcon = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -124,8 +123,8 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
         )}
         
         {icon && (
-          <div className={`absolute z-30 transition-all duration-500 pointer-events-auto
-            ${(isPortrait || centerIcon) /* <--- UPDATED: Checks for centerIcon prop */
+          <div className={`absolute z-30 transition-all duration-500 pointer-events-auto flex flex-col items-center gap-3
+            ${(isPortrait || centerIcon) 
               ? 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group-hover:scale-105' 
               : 'top-6 right-6 group-hover:scale-110'
             }`}
@@ -135,12 +134,30 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
                  {icon}
                </span>
              </div>
+             
+             {/* iPad / Tablet Inline Controls */}
+             {(isPortrait || centerIcon) && images.length > 1 && (
+               <div className="flex gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/10">
+                 <button 
+                   onClick={prevSlide} 
+                   className="text-white flex items-center justify-center p-0.5 hover:text-primary transition-colors pointer-events-auto"
+                 >
+                   <span className="material-symbols-outlined text-sm leading-none">chevron_left</span>
+                 </button>
+                 <button 
+                   onClick={nextSlide} 
+                   className="text-white flex items-center justify-center p-0.5 hover:text-primary transition-colors pointer-events-auto"
+                 >
+                   <span className="material-symbols-outlined text-sm leading-none">chevron_right</span>
+                 </button>
+               </div>
+             )}
           </div>
         )}
 
         {/* ─── NAVIGATION OVERLAY ─── */}
         {images.length > 1 && (
-          <div className="absolute top-5 right-5 z-50 flex gap-2 opacity-100 xl:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-0 xl:translate-x-4 group-hover:translate-x-0 pointer-events-auto">
+          <div className="absolute top-5 right-5 z-50 flex gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-0 md:translate-x-4 group-hover:translate-x-0 pointer-events-auto">
             <button 
               onClick={prevSlide}
               className="flex items-center justify-center font-body text-[10px] font-bold tracking-wider text-white hover:text-black transition-colors bg-white/30 hover:bg-white backdrop-blur-md p-1.5 md:px-3 md:py-1.5 rounded-full border border-white/40 shadow-sm"
@@ -166,7 +183,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
           `}>
             
             <h3 className={`font-editorial-heading font-black transition-colors duration-300 drop-shadow-md m-0 leading-none tracking-tight
-              ${isPortrait ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'}
+              ${isPortrait ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-xl sm:text-2xl md:text-3xl lg:text-4xl'}
             `}>
               <span className="text-white block">
                 {Array.isArray(titlePre) ? titlePre[currentIndex] : titlePre}
@@ -179,7 +196,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
             </h3>
             
             {subtitle && (
-              <p className={`hidden sm:block font-body text-sm sm:text-base text-white/80 opacity-100 xl:opacity-0 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm mt-3`}>
+              <p className={`hidden sm:block font-body text-xs md:text-sm text-white/80 opacity-100 xl:opacity-0 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm mt-3`}>
                 {Array.isArray(subtitle) ? subtitle[currentIndex] : subtitle}
               </p>
             )}
@@ -202,17 +219,12 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
 };
 
 export default function Work() {
-  
-  // DYNAMIC FETCHING
   const photographyImages = projects.filter(p => p.category === 'PHOTOGRAPHY').map(p => p.heroImage);
   const webImages = projects.filter(p => p.category === 'DIGITAL').map(p => p.heroImage);
   const brandFilmImages = projects.filter(p => p.category === 'BRANDING' || p.category === 'ADVERTISING').map(p => p.heroImage);
   const verticalReelImages = projects.filter(p => p.category === 'CINEMATIC').map(p => p.heroImage);
-  
-  // Typography Fetching
   const typographyImages = projects.filter(p => p.category === 'TYPOGRAPHY').map(p => p.heroImage);
 
-  // Live Events Fetching 
   const liveEventsData = projects.filter(p => p.category === 'LIVE EVENTS');
   const liveEventsImages = liveEventsData.map(p => p.heroImage);
   
@@ -229,8 +241,6 @@ export default function Work() {
 
   return (
     <section className="bg-black text-white px-6 sm:px-10 md:px-16 py-24 sm:py-32 md:py-32">
-      
-      {/* ─── HEADER ─── */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12 sm:mb-16 md:mb-20 gap-6">
         <div>
           <h2 className="font-editorial-heading text-5xl sm:text-6xl md:text-[5.5rem] lg:text-8xl font-black tracking-tighter leading-none">
@@ -244,10 +254,7 @@ export default function Work() {
         </div>
       </div>
       
-      {/* ─── PREMIUM BENTO GRID ─── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 auto-rows-[350px] lg:auto-rows-[380px]">
-        
-        {/* Box 1 */}
         <div className="col-span-1 lg:col-span-1 lg:row-span-1">
           <CarouselCard 
             images={photographyImages}
@@ -258,7 +265,6 @@ export default function Work() {
           />
         </div>
 
-        {/* Box 2 */}
         <div className="col-span-1 lg:col-span-1 lg:row-span-1">
           <CarouselCard 
             images={webImages}
@@ -269,7 +275,6 @@ export default function Work() {
           />
         </div>
 
-        {/* Box 3: Vertical Reels */}
         <div className="md:col-span-1 lg:col-span-1 lg:row-span-2">
           <CarouselCard 
             images={verticalReelImages}
@@ -282,7 +287,6 @@ export default function Work() {
           />
         </div>
 
-        {/* Box 4: Live Events */}
         <div className="md:col-span-1 lg:col-span-1 lg:row-span-2">
            <CarouselCard 
             images={liveEventsImages}
@@ -295,7 +299,6 @@ export default function Work() {
           />
         </div>
 
-        {/* Box 5: Wide Horizontal Block */}
         <div className="md:col-span-2 lg:col-span-2 lg:row-span-1">
            <CarouselCard 
             images={brandFilmImages}
@@ -307,7 +310,6 @@ export default function Work() {
           />
         </div>
 
-        {/* Box 6: Typography - Full Width Bottom Row */}
         <div className="md:col-span-2 lg:col-span-4 lg:row-span-1">
            <CarouselCard 
             images={typographyImages}
@@ -317,10 +319,9 @@ export default function Work() {
             tags="TYPOGRAPHY"
             isPortrait={false} 
             icon="play_arrow" 
-            centerIcon={true} /* <--- UPDATED: This prop centers the icon! */
+            centerIcon={true}
           />
         </div>
-
       </div>
     </section>
   );
