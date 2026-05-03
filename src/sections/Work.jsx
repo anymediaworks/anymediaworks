@@ -13,7 +13,8 @@ const isVideo = (src) => {
 };
 
 // Reusable Carousel Component for the Bento Grid
-const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, isPortrait = false }) => {
+// UPDATED: Added `centerIcon = false` to props
+const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, isPortrait = false, centerIcon = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -124,7 +125,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
         
         {icon && (
           <div className={`absolute z-30 transition-all duration-500 pointer-events-auto
-            ${isPortrait 
+            ${(isPortrait || centerIcon) /* <--- UPDATED: Checks for centerIcon prop */
               ? 'top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group-hover:scale-105' 
               : 'top-6 right-6 group-hover:scale-110'
             }`}
@@ -316,6 +317,7 @@ export default function Work() {
             tags="TYPOGRAPHY"
             isPortrait={false} 
             icon="play_arrow" 
+            centerIcon={true} /* <--- UPDATED: This prop centers the icon! */
           />
         </div>
 
