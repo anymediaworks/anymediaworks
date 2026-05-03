@@ -28,8 +28,8 @@ export default function PortfolioPage() {
           alt="Hero Background"
           fill 
           priority 
-          /* UPDATED: grayscale-0 on mobile/tablet, grayscale on lg (desktop) */
-          className="object-cover object-center z-0 grayscale-0 lg:grayscale opacity-40 scale-100 transition-all duration-[1200ms] lg:group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105" 
+          /* UPDATED: Changed lg: to xl: so iPads show color */
+          className="object-cover object-center z-0 grayscale-0 xl:grayscale opacity-40 scale-100 transition-all duration-[1200ms] xl:group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105" 
         />
         <div className="absolute inset-0 bg-black/60 z-0 pointer-events-none transition-colors duration-[1200ms] group-hover:bg-black/40"></div>
 
@@ -72,9 +72,10 @@ export default function PortfolioPage() {
       {/* ─── DYNAMIC FILTER NAVIGATION (MOBILE OPTIMIZED) ─── */}
       <section className="sticky top-0 z-40 bg-zinc-50/90 backdrop-blur-xl border-b border-zinc-200">
         <div className="w-full max-w-screen-2xl mx-auto px-0 md:px-16">
-          <div className="flex overflow-x-auto md:flex-wrap items-center justify-start md:justify-center gap-6 sm:gap-8 md:gap-12 px-6 py-5 md:px-0 md:py-10 font-body font-bold uppercase tracking-[0.15em] text-[10px] sm:text-xs [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+          {/* UPDATED: Changed md:flex-wrap to xl:flex-wrap so it scrolls cleanly horizontally on iPads instead of wrapping awkwardly */}
+          <div className="flex overflow-x-auto xl:flex-wrap items-center justify-start xl:justify-center gap-6 sm:gap-8 md:gap-12 px-6 py-5 md:px-0 md:py-10 font-body font-bold uppercase tracking-[0.15em] text-[10px] sm:text-xs [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
             
-            {['ALL WORK', 'CINEMATIC', 'DIGITAL', 'BRANDING', 'PHOTOGRAPHY', 'ADVERTISING', 'LIVE EVENTS'].map((filterName) => (
+            {['ALL WORK', 'CINEMATIC', 'DIGITAL', 'BRANDING', 'PHOTOGRAPHY', 'TYPOGRAPHY','ADVERTISING', 'LIVE EVENTS'].map((filterName) => (
               <button 
                 key={filterName}
                 onClick={() => setActiveFilter(filterName)}
@@ -88,6 +89,7 @@ export default function PortfolioPage() {
                    filterName === 'DIGITAL' ? 'devices' : 
                    filterName === 'BRANDING' ? 'diamond' :
                    filterName === 'PHOTOGRAPHY' ? 'photo_camera' :
+                   filterName === 'TYPOGRAPHY' ? 'text_fields' :
                    filterName === 'ADVERTISING' ? 'campaign' :
                    filterName === 'LIVE EVENTS' ? 'local_activity' : 
                    'label'}
@@ -100,7 +102,7 @@ export default function PortfolioPage() {
               </button>
             ))}
             
-            <div className="w-4 flex-shrink-0 md:hidden"></div>
+            <div className="w-4 flex-shrink-0 xl:hidden"></div>
           </div>
         </div>
       </section>
@@ -127,22 +129,24 @@ export default function PortfolioPage() {
                     loop
                     playsInline
                     autoPlay
-                    className="absolute inset-0 w-full h-full object-cover grayscale-0 lg:grayscale opacity-90 transition-all duration-[1500ms] lg:group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                    /* UPDATED: Changed lg: to xl: for grayscale/opacity */
+                    className="absolute inset-0 w-full h-full object-cover grayscale-0 xl:grayscale opacity-100 xl:opacity-90 transition-all duration-[1500ms] xl:group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                   />
                 ) : (
                   <Image
                     src={project.heroImage}
                     alt={project.title}
                     fill
-                    className="w-full h-full object-cover grayscale-0 lg:grayscale opacity-90 transition-all duration-[1500ms] lg:group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
+                    /* UPDATED: Changed lg: to xl: for grayscale/opacity */
+                    className="w-full h-full object-cover grayscale-0 xl:grayscale opacity-100 xl:opacity-90 transition-all duration-[1500ms] xl:group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                   />
                 )}
                 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 lg:via-black/20 to-transparent opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                {/* Overlay gradient - UPDATED lg: to xl: */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 xl:via-black/20 to-transparent opacity-100 xl:opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                {/* Text Content */}
-                <div className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end opacity-100 lg:opacity-0 group-hover:opacity-100 transform translate-y-0 lg:translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                {/* Text Content - UPDATED lg: to xl: */}
+                <div className="absolute inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end opacity-100 xl:opacity-0 group-hover:opacity-100 transform translate-y-0 xl:translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
                   <div className="flex justify-between items-end gap-4">
                     <div className="flex-1">
                       <span className="font-body font-bold text-primary uppercase text-[9px] sm:text-[10px] tracking-widest block mb-1 md:mb-2 drop-shadow-md">
@@ -153,7 +157,7 @@ export default function PortfolioPage() {
                       </h3>
                     </div>
                     
-                    <div className="bg-white/20 lg:bg-white/10 backdrop-blur-md rounded-full p-2.5 sm:p-3 border border-white/20 overflow-hidden relative flex-shrink-0">
+                    <div className="bg-white/20 xl:bg-white/10 backdrop-blur-md rounded-full p-2.5 sm:p-3 border border-white/20 overflow-hidden relative flex-shrink-0">
                       <div className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
                       <span className="material-symbols-outlined relative z-10 text-white group-hover:text-black transform translate-y-0 translate-x-0 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-500 ease-out text-lg sm:text-xl">
                         arrow_outward

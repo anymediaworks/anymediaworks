@@ -131,6 +131,18 @@ export const projects = [
     gallery: ["/videos/reel3.mp4"], // Stores all videos so you can loop/display them on the detail page
     description: 'A high-impact collection of short-form vertical reels engineered for maximum audience retention and social media engagement. Built for speed, attention, and visual dominance.',
   },
+  {
+  id: '12',
+    slug: 'vertical-reels-collection',
+    title: 'TYPOGRAPHY EDIT',
+    category: 'TYPOGRAPHY',
+    year: '2026',
+    client: 'Various Brands',
+    role: 'Motion Graphics',
+    heroImage: '/videos/typgraphy.mp4', // Using the first video as the hero cover
+    gallery: ["/videos/typgraphy.mp4"], // Stores all videos so you can loop/display them on the detail page
+    description: 'A high-impact collection of short-form vertical reels engineered for maximum audience retention and social media engagement. Built for speed, attention, and visual dominance.',
+  },
 
 ];
 

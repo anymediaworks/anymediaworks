@@ -1,3 +1,4 @@
+// src/app/portfolio/[id]/page.js
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -237,7 +238,8 @@ export default async function ProjectDetailsPage({ params }) {
           <div className="bg-black p-8 sm:p-12 md:p-24 rounded-2xl md:rounded-3xl overflow-hidden relative group/next cursor-pointer border-4 border-transparent hover:border-primary transition-all duration-500">
             
             {/* Background Media of the next project */}
-            <div className="absolute inset-0 z-0 opacity-20 grayscale-0 lg:grayscale transition-all duration-700 group-hover/next:scale-110 lg:group-hover/next:grayscale-0 group-hover/next:opacity-40">
+            {/* UPDATED: Changed lg: to xl: for grayscale, and set base opacity to 40 so it's visible on iPads without hovering */}
+            <div className="absolute inset-0 z-0 opacity-40 xl:opacity-20 grayscale-0 xl:grayscale transition-all duration-700 group-hover/next:scale-110 xl:group-hover/next:grayscale-0 group-hover/next:opacity-40">
                 {isNextProjectVideo ? (
                   <video 
                     src={nextProject.heroImage || nextProject.image} 

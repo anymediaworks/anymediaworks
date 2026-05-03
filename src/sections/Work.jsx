@@ -1,3 +1,4 @@
+// src/app/portfolio/page.js
 "use client";
 
 import Image from 'next/image';
@@ -8,7 +9,7 @@ import { projects } from '@/data/projects'; // Adjust path as needed
 
 // Helper function to check if the source is a video
 const isVideo = (src) => {
-  return src.match(/\.(mp4|webm|ogg)$/i);
+  return src && src.match(/\.(mp4|webm|ogg)$/i);
 };
 
 // Reusable Carousel Component for the Bento Grid
@@ -93,7 +94,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
                 className={`w-full h-full object-cover transition-all duration-1000 ease-out transform 
                   ${isPlaying 
                     ? 'grayscale-0 brightness-100 scale-100' 
-                    : 'grayscale-0 brightness-95 lg:grayscale lg:brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-95 group-hover:scale-105' 
+                    : 'grayscale-0 brightness-95 xl:grayscale xl:brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-95 group-hover:scale-105' 
                   }`}
               />
             ) : (
@@ -104,7 +105,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
                 className={`object-cover transition-all duration-1000 ease-out transform 
                   ${isPlaying 
                     ? 'grayscale-0 brightness-100 scale-100' 
-                    : 'grayscale-0 brightness-95 lg:grayscale lg:brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-95 group-hover:scale-105' 
+                    : 'grayscale-0 brightness-95 xl:grayscale xl:brightness-[0.7] group-hover:grayscale-0 group-hover:brightness-95 group-hover:scale-105' 
                   }`} 
               />
             )}
@@ -138,7 +139,7 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
 
         {/* ─── NAVIGATION OVERLAY ─── */}
         {images.length > 1 && (
-          <div className="absolute top-5 right-5 z-50 flex gap-2 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-0 lg:translate-x-4 group-hover:translate-x-0 pointer-events-auto">
+          <div className="absolute top-5 right-5 z-50 flex gap-2 opacity-100 xl:opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-0 xl:translate-x-4 group-hover:translate-x-0 pointer-events-auto">
             <button 
               onClick={prevSlide}
               className="flex items-center justify-center font-body text-[10px] font-bold tracking-wider text-white hover:text-black transition-colors bg-white/30 hover:bg-white backdrop-blur-md p-1.5 md:px-3 md:py-1.5 rounded-full border border-white/40 shadow-sm"
@@ -160,13 +161,12 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
         <div className={`absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent flex flex-col justify-end z-20 h-3/4 pointer-events-none ${isPortrait ? 'p-6 md:p-8' : 'p-5 md:p-6'}`}>
           
           <div className={`transform transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] flex flex-col justify-end pointer-events-none
-            ${subtitle ? 'translate-y-0 lg:translate-y-14 group-hover:translate-y-0' : 'translate-y-0 lg:translate-y-4 group-hover:translate-y-0'}
+            ${subtitle ? 'translate-y-0 xl:translate-y-14 group-hover:translate-y-0' : 'translate-y-0 xl:translate-y-4 group-hover:translate-y-0'}
           `}>
             
             <h3 className={`font-editorial-heading font-black transition-colors duration-300 drop-shadow-md m-0 leading-none tracking-tight
               ${isPortrait ? 'text-4xl sm:text-5xl' : 'text-3xl sm:text-4xl'}
             `}>
-              {/* Supports Arrays or Strings for Dynamic Title Fetching */}
               <span className="text-white block">
                 {Array.isArray(titlePre) ? titlePre[currentIndex] : titlePre}
               </span>
@@ -178,13 +178,13 @@ const CarouselCard = ({ images, titlePre, titleHighlight, subtitle, tags, icon, 
             </h3>
             
             {subtitle && (
-              <p className={`hidden sm:block font-body text-sm sm:text-base text-white/80 opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm mt-3`}>
+              <p className={`hidden sm:block font-body text-sm sm:text-base text-white/80 opacity-100 xl:opacity-0 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-sm mt-3`}>
                 {Array.isArray(subtitle) ? subtitle[currentIndex] : subtitle}
               </p>
             )}
 
             {images.length > 1 && !isPlaying && (
-              <div className="mt-5 flex gap-2 h-[3px] w-full bg-transparent overflow-hidden opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="mt-5 flex gap-2 h-[3px] w-full bg-transparent overflow-hidden opacity-100 xl:opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {images.map((_, idx) => (
                   <div 
                     key={idx} 
@@ -208,18 +208,19 @@ export default function Work() {
   const brandFilmImages = projects.filter(p => p.category === 'BRANDING' || p.category === 'ADVERTISING').map(p => p.heroImage);
   const verticalReelImages = projects.filter(p => p.category === 'CINEMATIC').map(p => p.heroImage);
   
-  // Live Events Fetching (Images + Splitting Dynamic Titles for the Primary Color Highlight)
+  // Typography Fetching
+  const typographyImages = projects.filter(p => p.category === 'TYPOGRAPHY').map(p => p.heroImage);
+
+  // Live Events Fetching 
   const liveEventsData = projects.filter(p => p.category === 'LIVE EVENTS');
   const liveEventsImages = liveEventsData.map(p => p.heroImage);
   
-  // Extract all words EXCEPT the last one for the white text
   const liveEventsTitlePre = liveEventsData.map(p => {
     const words = p.title.split(' ');
     words.pop(); 
     return words.join(' ');
   });
   
-  // Extract ONLY the last word for the primary color highlight
   const liveEventsTitleHighlight = liveEventsData.map(p => {
     const words = p.title.split(' ');
     return words.pop(); 
@@ -280,12 +281,12 @@ export default function Work() {
           />
         </div>
 
-        {/* Box 4: Live Events (Dynamic Titles Injected Here) */}
+        {/* Box 4: Live Events */}
         <div className="md:col-span-1 lg:col-span-1 lg:row-span-2">
            <CarouselCard 
             images={liveEventsImages}
-            titlePre={liveEventsTitlePre} // e.g. "WEDDING", "BIRTHDAY", "BABY SHOWER"
-            titleHighlight={liveEventsTitleHighlight} // e.g. "SHOTS", "PHOTOGRAPHY", "PHOTOSHOOT" (in primary color!)
+            titlePre={liveEventsTitlePre} 
+            titleHighlight={liveEventsTitleHighlight} 
             subtitle="Capturing authentic moments" 
             tags="LIVE EVENTS"
             icon="play_arrow"
@@ -302,6 +303,19 @@ export default function Work() {
             subtitle="Stories that sell, not just look good"
             tags="BRANDING"
             isPortrait={false} 
+          />
+        </div>
+
+        {/* Box 6: Typography - Full Width Bottom Row */}
+        <div className="md:col-span-2 lg:col-span-4 lg:row-span-1">
+           <CarouselCard 
+            images={typographyImages}
+            titlePre="Kinetic"
+            titleHighlight="Typography"
+            subtitle="Words that move and make an impact"
+            tags="TYPOGRAPHY"
+            isPortrait={false} 
+            icon="play_arrow" 
           />
         </div>
 

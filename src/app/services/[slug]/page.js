@@ -36,7 +36,8 @@ export default async function ServiceDetailsPage({ params }) {
       {/* Navigation Bar */}
       <nav className="relative z-40 w-full px-6 sm:px-8 md:px-16 py-6 md:py-10 border-b border-zinc-100 flex items-center bg-white">
         <div className="max-w-screen-2xl mx-auto w-full">
-          <Link href="/" className="group inline-flex items-center gap-3 text-black hover:text-primary transition-colors duration-300 w-max">
+          {/* Ensure this href points back to your main services page if needed */}
+          <Link href="/services" className="group inline-flex items-center gap-3 text-black hover:text-primary transition-colors duration-300 w-max">
             <div className="w-8 h-8 rounded-full border border-black/20 group-hover:border-primary flex items-center justify-center transition-colors">
               <span className="material-symbols-outlined text-sm transform group-hover:-translate-x-1 transition-transform duration-300">
                 arrow_back
@@ -61,16 +62,18 @@ export default async function ServiceDetailsPage({ params }) {
 
       {/* Main Visual */}
       <section className="px-4 sm:px-8 md:px-16 mb-16 md:mb-24">
-        <div className="max-w-screen-2xl mx-auto relative w-full min-h-[50vh] md:aspect-[21/9] overflow-hidden bg-zinc-100 border-8 md:border-[12px] border-black rounded-sm shadow-2xl">
+        {/* ADDED: 'group' class to the container to enable hover effects */}
+        <div className="group max-w-screen-2xl mx-auto relative w-full min-h-[50vh] md:aspect-[21/9] overflow-hidden bg-zinc-100 border-8 md:border-[12px] border-black rounded-sm shadow-2xl">
           <Image
             src={service.heroImage} 
             alt={service.title}
             fill
             priority
-            className="object-cover"
+            /* UPDATED: Forced grayscale-0 for iPads, xl:grayscale for desktop hover effect */
+            className="object-cover grayscale-0 xl:grayscale transition-all duration-[1500ms] group-hover:scale-105 xl:group-hover:grayscale-0"
             sizes="(max-width: 768px) 100vw, 90vw"
           />
-          <div className="absolute inset-0 bg-primary/10 mix-blend-overlay pointer-events-none"></div>
+          <div className="absolute inset-0 bg-primary/10 mix-blend-overlay pointer-events-none transition-opacity duration-[1500ms] group-hover:opacity-0"></div>
         </div>
       </section>
 

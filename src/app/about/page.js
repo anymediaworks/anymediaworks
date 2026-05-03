@@ -19,8 +19,8 @@ export default function AboutPage() {
           alt="Hero Background"
           fill 
           priority 
-          // UPDATED: Removed base grayscale, added lg:grayscale. Kept opacity effects.
-          className="object-cover object-center z-[-2] grayscale-0 lg:grayscale opacity-40 scale-100 transition-all duration-[1200ms] ease-[cubic-bezier(0.33,1,0.68,1)] lg:group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105" 
+          /* UPDATED: Changed lg: to xl: for grayscale logic so iPads show color */
+          className="object-cover object-center z-[-2] grayscale-0 xl:grayscale opacity-40 scale-100 transition-all duration-[1200ms] ease-[cubic-bezier(0.33,1,0.68,1)] xl:group-hover:grayscale-0 group-hover:opacity-70 group-hover:scale-105" 
         />
 
         {/* Dark Overlay */}
@@ -95,8 +95,8 @@ export default function AboutPage() {
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {/* Strategy */}
           <div className="group relative h-[350px] sm:h-[450px] md:h-[600px] overflow-hidden bg-black border-[3px] sm:border-4 border-black hover:border-primary transition-colors duration-500 flex flex-col justify-between p-6 sm:p-8 md:p-10 cursor-default">
-            {/* UPDATED: grayscale-0 lg:grayscale lg:group-hover:grayscale-0 */}
-            <img src="/images/strategy.jpeg" alt="Strategy Planning" className="absolute inset-0 w-full h-full object-cover opacity-60 lg:opacity-40 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 group-hover:scale-110 lg:group-hover:opacity-60 transition-all duration-700 ease-out" />
+            {/* UPDATED: Changed lg: to xl: for grayscale/opacity logic */}
+            <img src="/images/strategy.jpeg" alt="Strategy Planning" className="absolute inset-0 w-full h-full object-cover opacity-60 xl:opacity-40 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 group-hover:scale-110 xl:group-hover:opacity-60 transition-all duration-700 ease-out" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
             <div className="relative z-10 flex justify-between items-start w-full">
               <span className="font-editorial-heading text-5xl sm:text-6xl md:text-7xl text-primary font-black opacity-80">01</span>
@@ -111,8 +111,8 @@ export default function AboutPage() {
 
           {/* Production */}
           <div className="group relative h-[350px] sm:h-[450px] md:h-[600px] overflow-hidden bg-black border-[3px] sm:border-4 border-black hover:border-primary transition-colors duration-500 flex flex-col justify-between p-6 sm:p-8 md:p-10 cursor-default">
-            {/* UPDATED: grayscale-0 lg:grayscale lg:group-hover:grayscale-0 */}
-            <img src="/images/production.jpeg" alt="Cinematic Production" className="absolute inset-0 w-full h-full object-cover opacity-60 lg:opacity-40 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 group-hover:scale-110 lg:group-hover:opacity-60 transition-all duration-700 ease-out" />
+            {/* UPDATED: Changed lg: to xl: for grayscale/opacity logic */}
+            <img src="/images/production.jpeg" alt="Cinematic Production" className="absolute inset-0 w-full h-full object-cover opacity-60 xl:opacity-40 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 group-hover:scale-110 xl:group-hover:opacity-60 transition-all duration-700 ease-out" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
             <div className="relative z-10 flex justify-between items-start w-full">
               <span className="font-editorial-heading text-5xl sm:text-6xl md:text-7xl text-primary font-black opacity-80">02</span>
@@ -127,8 +127,8 @@ export default function AboutPage() {
 
           {/* Execution */}
           <div className="group relative h-[350px] sm:h-[450px] md:h-[600px] overflow-hidden bg-black border-[3px] sm:border-4 border-black hover:border-primary transition-colors duration-500 flex flex-col justify-between p-6 sm:p-8 md:p-10 cursor-default">
-            {/* UPDATED: grayscale-0 lg:grayscale lg:group-hover:grayscale-0 */}
-            <img src="/images/execution.jpeg" alt="Data and Execution" className="absolute inset-0 w-full h-full object-cover opacity-60 lg:opacity-40 grayscale-0 lg:grayscale lg:group-hover:grayscale-0 group-hover:scale-110 lg:group-hover:opacity-60 transition-all duration-700 ease-out" />
+            {/* UPDATED: Changed lg: to xl: for grayscale/opacity logic */}
+            <img src="/images/execution.jpeg" alt="Data and Execution" className="absolute inset-0 w-full h-full object-cover opacity-60 xl:opacity-40 grayscale-0 xl:grayscale xl:group-hover:grayscale-0 group-hover:scale-110 xl:group-hover:opacity-60 transition-all duration-700 ease-out" />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
             <div className="relative z-10 flex justify-between items-start w-full">
               <span className="font-editorial-heading text-5xl sm:text-6xl md:text-7xl text-primary font-black opacity-80">03</span>
@@ -240,8 +240,8 @@ export default function AboutPage() {
           {/* Team Member 1 */}
           <div className="relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-sm mx-auto sm:mx-0">
             <div className="aspect-square bg-white border-[3px] sm:border-4 border-black overflow-hidden relative">
-              {/* UPDATED: grayscale-0 lg:grayscale lg:group-hover:grayscale-0 */}
-              <img className="w-full h-full object-cover grayscale-0 lg:grayscale brightness-110 lg:group-hover:grayscale-0 transition-all duration-[1500ms] lg:duration-300" alt="Nitish Kumar" src="/images/team1.PNG" />
+              {/* UPDATED: Changed lg: to xl: for grayscale logic */}
+              <img className="w-full h-full object-cover grayscale-0 xl:grayscale brightness-110 xl:group-hover:grayscale-0 transition-all duration-[1500ms] xl:duration-300" alt="Nitish Kumar" src="/images/team1.PNG" />
             </div>
             <div className="mt-4 md:mt-6 text-center sm:text-left">
               <p className="font-editorial-heading text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tighter">NITISH KUMAR</p>
@@ -252,8 +252,8 @@ export default function AboutPage() {
           {/* Team Member 2 */}
           <div className="relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-sm mx-auto sm:mx-0">
             <div className="aspect-square bg-white border-[3px] sm:border-4 border-black overflow-hidden relative">
-              {/* UPDATED: grayscale-0 lg:grayscale lg:group-hover:grayscale-0 */}
-              <img className="w-full h-full object-cover grayscale-0 lg:grayscale brightness-110 lg:group-hover:grayscale-0 transition-all duration-[1500ms] lg:duration-300" alt="Yashoda Kumari" src="/images/team4.PNG" />
+              {/* UPDATED: Changed lg: to xl: for grayscale logic */}
+              <img className="w-full h-full object-cover grayscale-0 xl:grayscale brightness-110 xl:group-hover:grayscale-0 transition-all duration-[1500ms] xl:duration-300" alt="Yashoda Kumari" src="/images/team4.PNG" />
             </div>
             <div className="mt-4 md:mt-6 text-center sm:text-left">
               <p className="font-editorial-heading text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tighter">VIJAY ATISH</p>
@@ -264,8 +264,8 @@ export default function AboutPage() {
           {/* Team Member 3 */}
           <div className="relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-2rem)] max-w-sm mx-auto sm:mx-0">
             <div className="aspect-square bg-white border-[3px] sm:border-4 border-black overflow-hidden relative">
-              {/* UPDATED: grayscale-0 lg:grayscale lg:group-hover:grayscale-0 */}
-              <img className="w-full h-full object-cover grayscale-0 lg:grayscale brightness-110 lg:group-hover:grayscale-0 transition-all duration-[1500ms] lg:duration-300" alt="Pintu Kumar" src="/images/team3.PNG" />
+              {/* UPDATED: Changed lg: to xl: for grayscale logic */}
+              <img className="w-full h-full object-cover grayscale-0 xl:grayscale brightness-110 xl:group-hover:grayscale-0 transition-all duration-[1500ms] xl:duration-300" alt="Pintu Kumar" src="/images/team3.PNG" />
             </div>
             <div className="mt-4 md:mt-6 text-center sm:text-left">
               <p className="font-editorial-heading text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tighter">PINTU KUMAR</p>
